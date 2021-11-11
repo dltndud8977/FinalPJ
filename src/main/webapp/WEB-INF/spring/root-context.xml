@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- #1 DBCP Connection -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<!-- <property name="url" value="jdbc:oracle:thin:@1.212.197.133:49164:xe"/> -->
+		<property name="username" value="CAMP"/> 
+		<property name="password" value="CAMP"/>
+	</bean>
+	
+	<!-- #2 MyBatis Session create -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/> 
+		<property name="mapperLocations" value="classpath*:mappers/*.xml" /> 
+		<property name="configLocation" value="classpath:mybatis-config.xml"/> 
+	</bean>
+	
+	<!-- #3 SqlSessionTemplate define by mybatis factory -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<!-- #4 transaction manager define -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	
+	
+</beans>

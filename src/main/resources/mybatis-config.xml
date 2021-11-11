@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+	<!-- #1 Mybatis settings -->
+ 	<settings>
+ 		<setting name="jdbcTypeForNull" value="NULL"/>
+ 		<setting name="cacheEnabled" value="true"/>
+ 		<setting name="mapUnderscoreToCamelCase" value="true"/>
+ 	</settings>
+ 	
+	<!-- #2 Java full package class access to alias -->
+ 	<typeAliases>
+ 	<!--  
+ 		<typeAlias alias="Member" type="com.kh.camp.member.model.vo.Member"/>
+ 		<typeAlias alias="Dev" type="com.kh.camp.demo.model.vo.Dev"/>
+ 		<typeAlias alias="MyTypeHandler" type="com.kh.camp.common.MyTypeHandler" />
+		<typeAlias alias="Board" type="com.kh.camp.board.model.vo.Board"/>
+		<typeAlias alias="Attachment" type="com.kh.camp.board.model.vo.Attachment"/>
+	-->
+ 	</typeAliases>
+ 	
+ 	<typeHandlers>
+ 		<package name="com.kh.camp.common"/>
+ 	</typeHandlers>
+ 	
+ </configuration>
