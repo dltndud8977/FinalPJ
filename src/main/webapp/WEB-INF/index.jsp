@@ -12,6 +12,5 @@
 	<h1>2021/11/11 pm5:21 재학님꺼까지 merge한 상태</h1>
 
 
-	<%@ include file="views/common/footer.jsp" %>
 </body>
 </html>
