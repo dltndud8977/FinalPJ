@@ -3,6 +3,6 @@
 <!DOCTYPE html>
 <div>
 	<footer>
-		<p>&lt;Copyright 2021. <strong>KH정보교육원</strong>. All rights reserved.&gt;</p>
+		<p>&lt;Copyright 2021. <strong>5조 Project</strong>. All rights reserved.&gt;</p>
 	</footer>
 </div>
