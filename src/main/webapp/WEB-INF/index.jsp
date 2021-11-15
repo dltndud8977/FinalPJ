@@ -9,10 +9,8 @@
 <link rel="stylesheet" href="/camp/resources/css/style.css" />
 </head>
 <body>
-	<%@ include file="views/common/header.jsp" %>
-	
 
-	
+	<%@ include file="views/common/header.jsp" %>
 	
 	<div class="content">
 		<!--  <img src="/camp/resources/images/tent3.jpg" alt="#" /> -->
@@ -56,8 +54,7 @@
      </div>
    
 
-
-
 	<%@ include file="views/common/footer.jsp" %>
+
 </body>
 </html>
