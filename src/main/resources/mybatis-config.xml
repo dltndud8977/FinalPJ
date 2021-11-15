@@ -11,13 +11,16 @@
  	
 	<!-- #2 Java full package class access to alias -->
  	<typeAliases>
- 	<!--  
+ 	 
  		<typeAlias alias="Member" type="com.kh.camp.member.model.vo.Member"/>
+ 	<!-- 
  		<typeAlias alias="Dev" type="com.kh.camp.demo.model.vo.Dev"/>
  		<typeAlias alias="MyTypeHandler" type="com.kh.camp.common.MyTypeHandler" />
 		<typeAlias alias="Board" type="com.kh.camp.board.model.vo.Board"/>
 		<typeAlias alias="Attachment" type="com.kh.camp.board.model.vo.Attachment"/>
 	-->
+	
+	
  	</typeAliases>
  	
  	<typeHandlers>

@@ -8,9 +8,20 @@
 <script src="resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
 	<%@ include file="views/common/header.jsp" %>
-	<h1>2021/11/11 pm5:21 재학님꺼까지 merge한 상태</h1>
-
-
+	
+	
+	<input type="button" value="관리자페이지"  onclick="fn_goAdminPage();"/>
+	<input type="button" value="예약페이지" onclick="fn_goReservePage();"/>
+	<script>
+	function fn_goAdminPage(){
+			location.href = "${pageContext.request.contextPath}/admin/adminPage.do";
+		}
+		
+	function fn_goReservePage(){
+			location.href="${pageContext.request.contextPath}/reserve/reserveList.do";
+	}
+	</script>
 </body>
 </html>
