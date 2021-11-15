@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminSQL">
+	<!--
+	<select id="loginMember" parameterType="Member" resultType="Member">
+		SELECT * FROM MEMBER
+		WHERE USERID = #{ userId } AND PASSWORD = #{ password }
+	</select>
+	-->
+	<!-- Access to #{ field } -->
+	
+	<select id="memberList" resultType="Member">
+		SELECT * FROM MEMBER WHERE USERSTATUS='Y' AND USERTYPE=1
+	</select>
+	
+	<select id="memberNum" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE USERSTATUS='Y' AND USERTYPE=1
+	</select>
+	
+	<select id="bsmemberList" resultType="Member">
+		SELECT * FROM MEMBER M 
+		JOIN BSMEMBER B ON(M.USERID = B.USERID) 
+		WHERE USERSTATUS='Y' AND USERTYPE=2
+	</select>
+	
+	<select id="bsmemberNum" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE USERSTATUS='Y' AND USERTYPE=2
+	</select>
+	
+	<select id="selectOne" resultType="Member" parameterType="string">
+		SELECT * FROM MEMBER M
+		JOIN BSMEMBER B ON(M.USERID = B.USERID) 
+		WHERE USERSTATUS='Y' AND BSNO= #{ bsNo }
+	</select>
+	
+	<update id="extendContract" parameterType="string">
+		UPDATE BSMEMBER SET BSSTATUS= 'Y', BSENDDATE = SYSDATE + 30 WHERE BSNO= #{ bsNo }
+	</update>
+	
+	<update id="extendContract1" parameterType="string">
+		UPDATE BSMEMBER SET BSENDDATE = BSENDDATE + 30 WHERE BSNO= #{ bsNo }
+	</update>
+	
+	<update id="expire" parameterType="Member">
+		UPDATE BSMEMBER SET BSENDDATE = NULL, BSSTATUS= 'N' WHERE (BSENDDATE &lt; SYSDATE)
+	</update>
+</mapper>
