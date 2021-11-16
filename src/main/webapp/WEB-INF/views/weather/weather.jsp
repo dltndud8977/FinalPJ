@@ -15,7 +15,7 @@
 ol, ul {
 	list-style : none;
 }
-.content{width:720px; height:780px; margin:0 auto; border:1px solid black}
+#mapImg{width:524px; height:673px; margin:0px 70px; }
 .nav{
 	display : inline-block;
 	margin : 70px;
@@ -35,7 +35,7 @@ ol, ul {
 	text-decoration : underline;
 }
 
-----------------
+--- map style ---
 #mapImg{
 	position : relative;
 }
@@ -44,13 +44,13 @@ ol, ul {
 	width : 50px;
 	height : 50px;
 	border-radius : 50%;
-	background : rgba(255, 255, 255, 0.6);
+	background : black;
 	text-align : center;
 	text-decoration : none;
 }
 .seoul{
-	right: 750px;    
-	bottom: 121px;
+	right: 845px;    
+	bottom: 145px;
 }
 </style>
 </head>
@@ -68,9 +68,8 @@ ol, ul {
 </div>
 
 <div class="content">
-	<h4>지도 api 자리</h4>
 	<img id="mapImg" src="${pageContext.request.contextPath}/resources/images/map1.png" alt="koreaMap" />
-	<a href="" class="seoul">서울</a>
+	<a href="" class="seoul"></a>
 </div>
 
 </body>
