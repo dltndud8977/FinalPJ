@@ -5,6 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<!-- 부트스트랩관련 라이브러리 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,7 +23,7 @@
             background: lightpink;
             
         }
-        nav{
+        main{
             display:inline-table;
             position:absolute;
             top : 20%;
@@ -28,7 +31,7 @@
             align : center;
             
         } 
-        nav ul li{
+        main ul li{
             list-style: none;
             margin-bottom : 300px;
             border: 1px solid black;
@@ -44,7 +47,7 @@
         }
       
 
-        li:hover {
+        #member {
             background: red;
             color: white;
         }
@@ -63,43 +66,26 @@
            
         }
 
-        li:hover .text{
-            visibility: visible;
+             
+        #count{
+        		position : absolute;
+				height: 100px;
+				width : 400px;
+				left : 25%;
+				
+			}
+        table {
+        	text-align : center;
         }
-        @media (max-width:1500px) {
-            nav{
-                left:0px;
-                transition : left 0.5s ease-out;
-            }
-            header{ 
-            font-size: 20px;
-            border: 1px solid green;
-            text-align: center;
-            background: lightpink;
-            transition : font-size 0.5s ease-out;
-            }
-        }
-               
-        @media (max-width:874px) {
-            h1{
-                font-size: 25px;
-                transition : font-size 0.5s ease-out;
-            }
-            .text{
-                width: 400px;
-                height: 15em;
-                font-size: 17px;
-                left: 50px;
-                top:300px;
-                padding:5px;
-            }
-            .pic{
-                width: 20rem;
-                height:10rem;
-                left:100px;
-            }
-        }
-
+      .page-item{
+      	width : 70px;
+      	border : none;
+      }
+      .page-link {
+      	width:50px;
+      	
+      }
+			
     </style>
 <title>관리자 페이지</title>
 </head>
@@ -107,7 +93,7 @@
 
 <c:import url="../common/header.jsp"/>
 
- <nav>
+ <main>
     <ul>
       
         <li id="reservation">
@@ -119,35 +105,60 @@
         </li>
         <li id="member">
             회원관리
-          
-            </li>
+           
             
         <li id="bsMember">
             사업자 관리
          
-           
         </li>
        
     </ul>
-    </nav>
+    
+     <div class="text">
+               <table id="tbl-board" class="table table-striped table-hover" border="1">
+					<tr>
+						<th>회원ID</th>
+						<th>회원 이름</th>
+						<th>휴대폰 번호</th>
+						<th>이메일</th>
+					</tr>
+					
+					<c:forEach items="${list}" var="m"> 
+					<tr id="${m.userId}">
+						<td>${m.userId}</td>
+						<td>${m.userName}</td>
+						<td>${m.phone}</td>
+						<td>${m.email}</td>
+					</tr>
+					</c:forEach>
+				</table>
+				
+				<div id="count">
+				<c:out value="${pageBar}" escapeXml="false"/>
+				</div>
+            </div>
+            </li>
+            
+    </main>
     
     <script>
-    	$(function() {
-    		$("#reservation").on("click",function(){
-    			location.href = "${pageContext.request.contextPath}/admin/reserManage.do";
-    		});
-    		
-    	});
-    	$(function() {
-    		$("#member").on("click",function(){
-    			location.href = "${pageContext.request.contextPath}/admin/memberManage.do";
-    		});
-    	});
-    	$(function() {
-    		$("#bsMember").on("click",function(){
-    			location.href = "${pageContext.request.contextPath}/admin/bsMemberManage.do";
-    		});
-    	});
+    $(function() {
+		$("#reservation").on("click",function(){
+			location.href = "${pageContext.request.contextPath}/admin/reserManage.do";
+		});
+		
+	});
+	$(function() {
+		$("#member").on("click",function(){
+			location.href = "${pageContext.request.contextPath}/admin/memberManage.do";
+		});
+	});
+	$(function() {
+		$("#bsMember").on("click",function(){
+			location.href = "${pageContext.request.contextPath}/admin/bsMemberManage.do";
+		});
+	});
+   
     </script>
 </body>
 </html>
