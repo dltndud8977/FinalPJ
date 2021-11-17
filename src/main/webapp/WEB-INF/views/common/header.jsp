@@ -37,7 +37,7 @@
 
 <div class="menubar">
 	<button class="btn-menu">
-		<a href="#">캠핑장</a>
+		<a href="${ pageContext.request.contextPath }/reserve/reserveList.do">캠핑장</a>
 	</button>
 	<button class="btn-menu">
 	<a href="${ pageContext.request.contextPath }/board/PsBoardList.do" >캠핑장 후기</a>
