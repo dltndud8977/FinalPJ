@@ -43,7 +43,7 @@
 		<a href="#">캠핑장 후기</a>
 	</button>
 	<button class="btn-menu">
-		<a href="#">교통/날씨 정보</a>
+		<a href="${pageContext.request.contextPath }/weather/weatherView.do">교통/날씨 정보</a>
 	</button>
 	<button class="btn-menu">
 		<a href="#">문의사항</a>
