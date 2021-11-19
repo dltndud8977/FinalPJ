@@ -16,9 +16,8 @@ public class Attachment implements Serializable{
 	
 	private static final long serialVersion = 6943L;
 	
-	private int afNo;
+	private int afnNo;
 	private int askNo;
-	private int nNo;
 	private String oldName;
 	private String  newName;
 	private String fStatus;

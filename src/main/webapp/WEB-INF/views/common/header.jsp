@@ -51,10 +51,10 @@
 
 <div class="menubar">
 	<button class="btn-menu">
-		<a href="${ pageContext.request.contextPath }/reserve/reserveList.do">캠핑장</a>
+		<a href="#">캠핑장</a>
 	</button>
 	<button class="btn-menu">
-	<a href="${ pageContext.request.contextPath }/board/PsBoardList.do" >캠핑장 후기</a>
+		<a href="#">캠핑장 후기</a>
 	</button>
 	<button class="btn-menu">
 		<a href="${pageContext.request.contextPath }/weather/weatherView.do">교통/날씨 정보</a>

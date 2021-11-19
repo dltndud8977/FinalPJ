@@ -1,6 +1,6 @@
 package com.kh.camp.member.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Member {
 
+	private int userNo;
 	private String userId;
 	private String userPw;
 	private int userType;
@@ -21,16 +22,9 @@ public class Member {
 	private String email;
 	private String userName;
 	private String userStatus;
-//	private String bsNo;
-//	private String bsStatus;
-//	private Date bsEndDate;
-//	private String bsName;
-
-	
-	public Member(String userId, String userPw) {
-		this.userId = userId;
-		this.userPw = userPw;
-		
-	}
+	private String bsNo;
+	private String bsStatus;
+	private Date bsEndDate;
+	private String bsName;
 	
 }
