@@ -1,7 +1,5 @@
 package com.kh.camp.reserve.model.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -12,12 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Reservation {
+public class Camp {
 
-	private int rNo     ;
-	private Date checkIn ;
-	private Date checkOut;
-	private String rStatus ;
-	private String userId  ;
-	private int roomNo  ;
+	private int campNo;
+	private String campName;
+	private double campLa;
+	private double campLo;
+	private String campArea;
+	private String campTel;
+	private String explain;
+	private int picNo;
+	private String picName;
 }

@@ -8,21 +8,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예약 페이지</title>
+<title>캠핑장 선택</title>
 <style>
 	.camping{
-		border:1px solid black;
+		
 		height : 10%;
-		margin : auto;
+		
 		width: 720px;
 		padding : 10px;
 		
 	}
 	
 	.camp{
+		margin : auto;
 		position : relative;
-		margin-botton : 20px;
+		margin-top : 20px;
 		cursor:pointer; 
+		width : 720px;
 		
 	}
 	
@@ -42,6 +44,7 @@
 	<div class="camping info">
 		양평 금물산하늘소캠프
 	</div>
+	<hr />
 </div>
 
 
@@ -53,6 +56,7 @@
 	<div class="camping info">
 		청계산 골든밸리캠핑장
 	</div>
+	<hr />
 </div>
 
 
@@ -63,6 +67,7 @@
 	<div class="camping info">
 		용인 반딧불캠핑장
 	</div>
+	<hr />
 </div>
 
 <div id="4" class="camp">
@@ -72,6 +77,7 @@
 	<div class="camping info">
 		광명 도덕산캠핑장
 	</div>
+	<hr />
 </div>
 
 
@@ -80,11 +86,13 @@
 		
 		$(function(){
 			$("div[id]").on("click",function(){
-				var boardNo = $(this).attr("id");
-				console.log("bordNo="+boardNo);
-				location.href = "${pageContext.request.contextPath}/reserve/reserveView.do?no="+boardNo;
+				var campNo = $(this).attr("id");
+				console.log("campNo="+campNo);
+				location.href = "${pageContext.request.contextPath}/reserve/campInfo.do?campNo="+campNo;
 			});
 		});
 	</script>
+	
+	<c:import url="../common/footer.jsp"/>
 </body>
 </html>
