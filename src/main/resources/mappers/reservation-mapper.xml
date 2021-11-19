@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservationSQL">
+	<select id="selectOne" parameterType="int" resultType="Camp">
+		SELECT * FROM CAMP_INFO WHERE CAMPNO = #{ campNo }
+	</select>
+	
+	<select id="selectPicture" parameterType="int" resultType="Camp">
+		SELECT * FROM PICTURE WHERE CAMPNO= #{ campNo }
+	</select>
+	
+	<select id="selectRoom" parameterType="int" resultType="Room">
+		SELECT * FROM ROOM WHERE CAMPNO= #{ campNo }
+	</select>
+	
+	<insert id="reservation" parameterType="Reservation">
+		INSERT INTO RESER_INFO VALUES(SEQ_RNO.NEXTVAL, #{ checkIn }, #{ checkOut }, #{ rStatus }, #{ userId }, #{ roomNo } )
+	</insert>
+</mapper>

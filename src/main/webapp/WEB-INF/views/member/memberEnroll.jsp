@@ -4,23 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>회원가입</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/enroll.css" />
 
 
 
-
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
 	
-	<div class="content">
-		<img src="/camp/resources/images/tent3.jpg" alt="#" />
-	</div>
 	
-
 	<div class="memberEnroll">
 	<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/shadowlogo.png" alt="logo" /></a>
 	<form id="insertMemberForm" action="memberEnrollEnd.do" method="post">
@@ -74,13 +67,11 @@
 				}
 			}
 	</script>
-
 	
 	</div>
+			
+
 	
-	
-	
-	
-	<%@ include file="../common/footer.jsp" %>
+
 </body>
 </html>

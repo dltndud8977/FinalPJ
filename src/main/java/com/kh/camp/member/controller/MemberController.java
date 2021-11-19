@@ -1,7 +1,9 @@
 package com.kh.camp.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.camp.exception.MemberException;
 import com.kh.camp.member.model.service.MemberService;
+import com.kh.camp.member.model.vo.Member;
 
 @Controller
 @SessionAttributes({"member"})
@@ -17,6 +20,9 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
+	@Autowired
+	BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
 		System.out.println("회원가입(memberEnroll.do) 접근확인!");
@@ -24,7 +30,6 @@ public class MemberController {
 		return "member/memberEnroll";
 		
 	}
-
 
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m, Model model) {
@@ -112,5 +117,4 @@ public class MemberController {
 		return "redirect:/";
 	
 	}
-
 }
