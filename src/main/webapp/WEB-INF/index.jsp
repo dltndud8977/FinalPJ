@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Camp Go!Camp Go!</title>
-<script src="resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="/camp/resources/css/style.css" />
 </head>
 <body>
