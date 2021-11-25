@@ -21,4 +21,5 @@ public class Reservation {
 	private String userId;
 	private String roomName;
 	private String campName;
+	
 }

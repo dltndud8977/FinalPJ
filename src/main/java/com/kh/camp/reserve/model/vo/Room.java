@@ -18,3 +18,4 @@ public class Room {
 	private String roomPrice;
 	private String campName;
 }
+

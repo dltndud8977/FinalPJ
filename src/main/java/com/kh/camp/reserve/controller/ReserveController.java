@@ -26,6 +26,7 @@ public class ReserveController {
 	public String campListPage() {
 		
 		return "reserve/reserveList";
+	
 	}
 	@RequestMapping("/reserve/campInfo.do")
 	public String campInfo(@RequestParam int campNo, Model model) {

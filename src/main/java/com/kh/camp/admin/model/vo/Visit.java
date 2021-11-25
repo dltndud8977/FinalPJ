@@ -17,3 +17,4 @@ public class Visit {
 	private int reserCount;
 }
 
+

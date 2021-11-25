@@ -21,4 +21,5 @@ public class Camp {
 	private String explain;
 	private int picNo;
 	private String picName;
+	
 }
