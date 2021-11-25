@@ -9,7 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>날씨 정보</title>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <style>
 
 ol, ul {
@@ -23,7 +24,8 @@ ol, ul {
 .nav{
     border: 1px solid white;
     height:50px;
-	margin : 50px;
+	margin-top: 150px;
+    margin-left: 85px;
 }
 .nav ul li{
 	float:left;
@@ -43,18 +45,25 @@ ol, ul {
 	color: white; 
 	padding:5px; 
 	background:grey;
+	width:150px;
 }
 .temp, .wind{
 	padding:5px;
 	text-align : center;
+	width:150px;
+}
+.campIndex{
+	padding:5px;
+	text-align : center;
+	width:150px;
 }
 #map{
 	display : block; 
 	margin: 0; 
 	float:left;
-	margin-bottom : 90px;
+	margin-bottom : 10px;
 }
-.infoDiv{
+/* .infoDiv{
 	display : block;
 	width: 100px; 
 	height:100px; 
@@ -93,37 +102,49 @@ table tr:nth-child(10), table tr:nth-child(11), table tr:nth-child(12){
 table tr:nth-child(13), table tr:nth-child(14){
 	color:#2F4858;
 }
+ */
 
-footer{
-	margin-top : 800px;
+.btn-group{
+	margin-left : 85px;
+	margin-bottom : 85px;
 }
+
 </style>
+
 </head>
-<script>
 
-
-</script>
 <body>
 <c:import url="../common/header.jsp"/>
 
 <!-- nav div  -->
-<div class="nav">
-<ul>
-	<li><a href="${pageContext.request.contextPath }/weather/weatherView.do">실시간 날씨 정보</a></li>
-	<li><a href="${pageContext.request.contextPath }/weather/trafficView.do">실시간 교통 정보</a></li>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath }/weather/weatherView.do">실시간 날씨 정보</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath }/weather/trafficView.do">실시간 교통 정보</a>
+  </li>
 </ul>
-</div>
-
 <!-- map div -->
 
-<div id="map" style="width:630px;height:600px;"></div>
+<div id="map" style="width:90%;height:500px; margin-left:85px;"></div>
+<!-- <p>
+	<button type="button" onclick="setOverlayMapTypeId('weather')">캠핑장 날씨 보기</button> 
+	<button type="button" onclick="setOverlayMapTypeId('campIndex')">캠핑 지수 보기</button> 
+</p> -->
+<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+  <label class="btn btn-outline-primary" for="btnradio1" onclick="setOverlayMapTypeId('weather')" style="font-size: 1rem;">캠핑장 날씨 보기</label>
 
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+  <label class="btn btn-outline-primary" for="btnradio2" onclick="setOverlayMapTypeId('campIndex')" style="font-size: 1rem;">캠핑 지수 보기</label>
+</div>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6595e8f05a907d26649ff019d39dc1a"></script>
 <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
-		        center: new kakao.maps.LatLng(35.69469, 127.94291), // 지도의 중심좌표
-		        level: 13, // 지도의 확대 레벨
+		        center: new kakao.maps.LatLng(37.31198, 127.09325), // 지도의 중심좌표
+		        level: 11, // 지도의 확대 레벨
 		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 		    }; 
 
@@ -145,94 +166,133 @@ footer{
 		];
 		
 		$(function(){
-			for(var i=0; i<campData.length; i++){	
-				var campDataOne = campData[i];
-				
-				$.ajax({
-					url : 'https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne[3] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
-					async: false,
-					success : function(wData){
-					//alert(wData.weather[0].icon);
-					var $ctemp = wData.main.temp;
-					var $cwind = wData.wind.speed;
-					var $cicon = wData.weather[0].icon;
+			setOverlayMapTypeId('weather');		
+		});
+		
+		function setOverlayMapTypeId(typeId){
+			if(typeId == 'weather'){
+				for(var i=0; i<campData.length; i++){	
+					var campDataOne = campData[i];
 					
-					
-						// 지도에 마커를 생성하고 표시한다
-						var marker = new kakao.maps.Marker({
-						    position: new kakao.maps.LatLng(campDataOne[0], campDataOne[1]), // 마커의 좌표
-						    map: map // 마커를 표시할 지도 객체
-						});
-	
-						// 인포윈도우를 생성합니다
-						var infowindow = new kakao.maps.InfoWindow({
-						    content : '<div class="campName">'+ campDataOne[2] + '</div>'
-						    		  +'<div class="temp">'+ '<img src="http://openweathermap.org/img/wn/'+$cicon+'.png">' + $ctemp +"℃"+ '</div>'
-						    		  +'<div class="wind">'+ "바람 : " + $cwind + "m/s" + '</div>'
-						});
-						console.log(infowindow);
-						
-						// 마커의 이벤트 리스너
-					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-						
-					    // 마우스 드래그시 이동가능
-						map.setDraggable(true);
-						
-						// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-						function makeOverListener(map, marker, infowindow) {
-						    return function() {
-						        infowindow.open(map, marker);
-						    };
-						}
-
-						// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-						function makeOutListener(infowindow) {
-						    return function() {
-						        infowindow.close();
-						    };
-						}
-					}
-				});
-				
-				/*
-				$.getJSON
-				('https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne[3] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
-						function(wData){
-						//alert(wData.wind.speed);
+					$.ajax({
+						url : 'https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne[3] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
+						async: false,
+						success : function(wData){
+						//alert(wData.weather[0].icon);
 						var $ctemp = wData.main.temp;
-						 var $cwind = wData.wind.speed;
-						 console.log(i);
-						 console.log(campDataOne);
-						 console.log(campData[i][0]);
+						var $cwind = wData.wind.speed;
+						var $cicon = wData.weather[0].icon;
+						
+						
 							// 지도에 마커를 생성하고 표시한다
 							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(campData[i][0], campData[i][1]), // 마커의 좌표
+							    position: new kakao.maps.LatLng(campDataOne[0], campDataOne[1]), // 마커의 좌표
 							    map: map // 마커를 표시할 지도 객체
 							});
 		
 							// 인포윈도우를 생성합니다
 							var infowindow = new kakao.maps.InfoWindow({
-							    content : '<div class="campName">'+ campData[i][2] + '</div>'
-							    		  +'<div class="temp">'+ "온도 : " + $ctemp + '</div>'
-							    		  +'<div class="wind">'+ "풍량 : " + $cwind + '</div>'
+							    content : '<div class="campName">'+ campDataOne[2] + '</div>'
+							    		  +'<div class="temp">'+ '<img src="http://openweathermap.org/img/wn/'+$cicon+'.png">' + $ctemp +"℃"+ '</div>'
+							    		  +'<div class="wind">'+ "바람 : " + $cwind + "m/s" + '</div>'
 							});
+							console.log(infowindow);
 							
 							// 마커의 이벤트 리스너
 						    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 						    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-		
-							// 마우스 드래그시 이동가능
+							
+						    // 마우스 드래그시 이동가능
 							map.setDraggable(true);
+							
+							// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+							function makeOverListener(map, marker, infowindow) {
+							    return function() {
+							        infowindow.open(map, marker);
+							    };
+							}
+
+							// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+							function makeOutListener(infowindow) {
+							    return function() {
+							        infowindow.close();
+							    };
+							}
 						}
-				);
-			*/
+					});
+				}
+				
+			} else {
+				for(var i=0; i<campData.length; i++){	
+					var campDataOne = campData[i];
+					
+					$.ajax({
+						url : 'https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne[3] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
+						async: false,
+						success : function(wData){
+						//alert(wData.weather[0].icon);
+						var $ctemp = wData.main.temp;
+						var $cwind = wData.wind.speed;
+						var $cicon = wData.weather[0].icon;
+						
+						
+							// 지도에 마커를 생성하고 표시한다
+							var marker = new kakao.maps.Marker({
+							    position: new kakao.maps.LatLng(campDataOne[0], campDataOne[1]), // 마커의 좌표
+							    map: map // 마커를 표시할 지도 객체
+							});
+							
+							// 인포윈도우를 생성합니다
+							var infowindow = new kakao.maps.InfoWindow({
+							    content :  '<div class="campName">'+ campDataOne[2] + '</div>'
+							    		  +'<div class="campIndex">'+ getCampIndex($cwind) +  '</div>'
+							});
+							console.log(infowindow);
+							
+							// 마커의 이벤트 리스너
+						    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+						    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+							
+						    // 마우스 드래그시 이동가능
+							map.setDraggable(true);
+							
+							// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+							function makeOverListener(map, marker, infowindow) {
+							    return function() {
+							        infowindow.open(map, marker);
+							    };
+							}
+
+							// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+							function makeOutListener(infowindow) {
+							    return function() {
+							        infowindow.close();
+							    };
+							}
+						}
+					});
+				}
 			}
-		})		
+		}
+		
+		function getCampIndex( campIndex ){
+			var msg = '';
+			
+			if(campIndex < 3.4) msg ='캠핑 즐기기 좋아요!';
+			else if(campIndex < 5.5) msg = '풀 팩다운이 필요합니다.';
+			else if(campIndex < 8) msg ='잠을 자기 싫으신가요?';
+			else if(campIndex < 10.8) msg = '나는 밤새도록 망치질을 하고싶다.';
+			else if(campIndex < 17.2) msg ='텐트를 새로 장만하고싶어요!?';
+			else if(campIndex < 20.8) msg = '텐트와 함께 날아가보고 싶어요!';
+			else if(campIndex < 28.5) msg = '텐트를 버리고 싶습니다.';
+			else if(campIndex > 28.6) msg = '목숨이 위험합니다.';
+			
+			return msg;
+		}
 </script>
 
 <!-- info div -->
-<div class="infoDiv" style="width:530px;height:600px;">
+<%-- <div class="infoDiv" style="width:530px;height:600px;">
 	<table>
 		<caption>
 			<h4>캠핑 지수(바람 지수)</h4>
@@ -321,7 +381,7 @@ footer{
 				<td>매미 60.0m/s <br />차바 56.7m/s <br />루사 56.5m/s</td>
 			</tr>
 		</caption>
-	</table>
+	</table> --%>
 </div>
 
 <c:import url="../common/footer.jsp"/>

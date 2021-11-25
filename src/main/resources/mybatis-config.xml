@@ -21,6 +21,8 @@
  		<typeAlias alias="PsBoard" type="com.kh.camp.board.model.vo.PsBoard"/>
  		<typeAlias alias="Attachment" type="com.kh.camp.board.model.vo.Attachment"/>
 
+		<typeAlias alias="CampInfo" type="com.kh.camp.weather.model.vo.CampInfo"/>
+ 		
  	<!-- 
  		<typeAlias alias="Dev" type="com.kh.camp.demo.model.vo.Dev"/>
  		<typeAlias alias="MyTypeHandler" type="com.kh.camp.common.MyTypeHandler" />

@@ -5,11 +5,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.ulslide.js"></script>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>교통 정보</title>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <style>
 
 ol, ul {
@@ -23,7 +25,8 @@ ol, ul {
 .nav{
     border: 1px solid white;
     height:50px;
-	margin : 50px;
+	margin-top: 150px;
+    margin-left: 85px;
 }
 .nav ul li{
 	float:left;
@@ -51,18 +54,45 @@ ol, ul {
 	display : block; 
 	margin: 0; 
 	float:left;
-	margin-bottom : 90px;
+	margin-bottom : 190px;
 }
-.infoDiv{
+/* .infoDiv{
 	display : block;
 	width: 100px; 
 	height:100px; 
 	border:1px solid black; 
 	float:left;
-	margin-left : 90px;
+	margin-left : 100px;
 	margin-bottom : 90px;
+} */
+ #banner{
+            width: 150px;
+            height: 500px;
+            /* background: #e8e8e8; */
+            overflow: hidden;
+            position: sticky;
+            top : 0; 
+            margin-left: 150px;
+    		display: inline-block;
+    		border : 1px solid lightgray;
+            
+        }
+        .banner{
+            margin-left: 100%; 
+            height: 100%;
+            float: right;
+            
+        }
+        span{
+            color: white;
+            font-size: 2.0em;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+footer{
+	margin-top : 1050px;
 }
-
 </style>
 </head>
 <script>
@@ -73,16 +103,19 @@ ol, ul {
 <c:import url="../common/header.jsp"/>
 
 <!-- nav div  -->
-<div class="nav">
-<ul>
-	<li><a href="${pageContext.request.contextPath }/weather/weatherView.do">실시간 날씨 정보</a></li>
-	<li><a href="${pageContext.request.contextPath }/weather/trafficView.do">실시간 교통 정보</a></li>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath }/weather/trafficView.do">실시간 교통 정보</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath }/weather/weatherView.do">실시간 날씨 정보</a>
+  </li>
 </ul>
-</div>
 
+<div id="mapNbanner" style="width:100%; height:680px;">
 <!-- map div -->
 
-<div id="map" style="width:830px;height:600px; margin-left:70px;"></div>
+<div id="map" style="width:1000px;height:500px; margin-left:85px;"></div>
 
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6595e8f05a907d26649ff019d39dc1a"></script>
 <script>
@@ -146,9 +179,51 @@ ol, ul {
 	}
 </script>
 
-<!-- info div -->
-<div class="infoDiv" style="width:130px;height:600px;">광고배너 div</div>
+<!-- banner div -->
+	<div id="banner">
+	    <img class="banner"/>
+	    <span> </span>
+	</div>
+	<script>
+$(document).ready(function(){
+	 
+    var imgList = ["${pageContext.request.contextPath }/resources/images/coleman.jpg", "../resources/images/hibrow.jpg", "../resources/images/snowpeak.jpg"]; // 배너 이미지 배열
+ 
+ 
+    banner(".banner", imgList, 5000);
+});
+ 
+function banner(selector, imgList, speed){
+    /*
+     * selector : 선택자
+     * imgList  : 이미지 배열
+     * speed    : 슬라이드 시간
+    */
+ 
+    var currentIndex = 0;
+    var $banner = $(selector);
+    var $tag = $("span");
+    $banner.attr("src", imgList[currentIndex]);
+    $tag.text("0" + ( currentIndex + 1 ));
+ 
+    setInterval(function(){
+ 
+        currentIndex ++;
+        if( currentIndex == imgList.length )
+        {
+            currentIndex = 0;
+        }
+ 
+        $banner.attr("src", imgList[currentIndex]);
+        $tag.text("0" + ( currentIndex + 1 ));
+ 
+        $banner.animate({'width':'100%'},1000);
+    }, speed);
+}    
+ 
+</script>	
+</div>	
 
-<%-- <c:import url="../common/footer.jsp"/> --%>
+<c:import url="../common/footer.jsp"/>
 </body>
 </html>
