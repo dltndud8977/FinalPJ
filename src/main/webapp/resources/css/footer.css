@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.footer{
+  background:#333;
+}
+
+
+
+.footer {
+  text-align: center;
+  padding:2rem 1rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: normal;
+  color:#fff;
+  border-top: .1rem solid rgba(255,255,255,.2);
+}
+
+.footer span{
+  color:var(--orange);
+}

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body{
-	background : beige;
+	background : white;
 }
 
 *{
@@ -33,9 +33,9 @@ button{
 	font-size : 20px;
 	cursor:pointer;
 	display: block;
-	background-color: #090;
+	background-color: #B0C4DE;
 	color:white;
-	border : 0px solid #090;	
+	border : 0px solid #B0C4DE;	
 	padding : 10px;
 	width: -webkit-fill-available;
 	
@@ -71,6 +71,7 @@ form{
 	line-height : 40px;
 	
 }
+
 
 
 

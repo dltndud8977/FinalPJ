@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="/camp/resources/css/style.css" />
+<link rel="stylesheet" href="/camp/resources/css/footer.css" />
 
 <section class="footer">
 

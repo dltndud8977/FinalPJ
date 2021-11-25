@@ -21,10 +21,10 @@ public class Member {
 	private String email;
 	private String userName;
 	private String userStatus;
-//	private String bsNo;
-//	private String bsStatus;
-//	private Date bsEndDate;
-//	private String bsName;
+	private String bsNo;
+	private String bsStatus;
+	private Date bsEndDate;
+	private String bsName;
 
 	
 	public Member(String userId, String userPw) {

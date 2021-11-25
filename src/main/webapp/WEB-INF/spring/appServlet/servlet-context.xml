@@ -34,7 +34,7 @@
 		</beans:property>
 	</beans:bean>
 	
- 
+ <!--  
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/memberView.do"/>
@@ -44,6 +44,7 @@
 			<beans:bean id="loginCheck" class="com.kh.camp.common.LoginInterceptor"/>
 		</interceptor>
 	</interceptors>
+	-->
  
 	
 	<!-- MultipartResolver : 파일 업로드를 처리하는 클래스 -->
