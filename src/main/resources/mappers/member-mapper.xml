@@ -15,4 +15,5 @@
 	<select id="selectOne" parameterType="string" resultType="Member">
 		SELECT * FROM MEMBER WHERE USERID = #{ userId }	
 	</select>
+	
 </mapper>

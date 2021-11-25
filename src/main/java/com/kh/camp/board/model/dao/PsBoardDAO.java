@@ -22,7 +22,6 @@ public interface PsBoardDAO {
 
 	List<Attachment> selectAttachmentList(int nNo);
 	
-	int updateReadCount(int nNo);
 	
 	int updateBoard(PsBoard psboard);
 
@@ -32,5 +31,5 @@ public interface PsBoardDAO {
 
 	int deleteAttachment(int nNo);
 
-	int deleteFile(int attNo);
+	int deleteFile(int afNo);
 }
