@@ -10,6 +10,7 @@
 		position: relative; 
 		margin: 50px auto; 
 		overflow: hidden;
+		
 		/*리스트 형식으로 이미지를 일렬로 정렬할 것이기 때문에, 
 		500px 밖으로 튀어 나간 이미지들은 hidden으로 숨겨줘야됨*/
 	}
@@ -34,13 +35,14 @@
 
 	.controller span{ 
 	position:absolute; 
-	background-color: beige; 
+	background-color: white; 
 	color: black; text-align: center; 
 	border-radius: 50%; 
 	padding: 10px 20px; 
-	top: 40%; 
+	
 	font-size: 1.3em; 
 	cursor: pointer; 
+	
 	}
 
 /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */ 

@@ -66,6 +66,7 @@
 					$('#insertMemberForm').submit();
 				}
 			}
+
 	</script>
 	
 	</div>
