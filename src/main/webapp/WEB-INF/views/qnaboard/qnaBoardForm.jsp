@@ -14,7 +14,7 @@
 	<script>
 	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 	function validate(){
-		var content = $("[name=askContent]").val();
+		var content = $("[name=nContent]").val();
 		if(content.trim().length==0){
 			alert("내용을 입력하세요");
 			return false;
@@ -46,10 +46,10 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="../common/header.jsp"/>
+	
 		<div id="board-container">
-			<form name="boardFrm" action="${pageContext.request.contextPath}/qnaboard/qnaBoardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
-				<input type="text" class="form-control" placeholder="제목" name="qnaitle" id="boardTitle" required>
+			<form name="boardFrm" action="${pageContext.request.contextPath}/board/PsBoardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
+				<input type="text" class="form-control" placeholder="제목" name="nTitle" id="boardTitle" required>
 				<input type="text" class="form-control" name="nWriter" value="${member.userId}" readonly required>
 				<div class="col-lg-4">
 									<div class="checkout__input">
@@ -90,7 +90,7 @@
 				    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
 				  </div>
 				</div>
-			    <textarea class="form-control" name="qnaContent" placeholder="내용" required></textarea>
+			    <textarea class="form-control" name="nContent" placeholder="내용" required></textarea>
 				<br />
 				<input type="submit" class="btn btn-outline-success" value="저장" >
 			</form>

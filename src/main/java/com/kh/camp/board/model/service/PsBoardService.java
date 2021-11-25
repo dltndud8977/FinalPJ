@@ -25,5 +25,5 @@ public interface PsBoardService {
 	
 	int deleteBoard(int nNo);
 
-	int deleteFile(int attNo);
+	int deleteFile(int afNo);
 }
