@@ -17,13 +17,13 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int insertMember(Member member) {
 		
-		return sqlSession.insert("memberSQL.inserMember", member);
+		return sqlSession.insert("memberSQL.insertMember", member);
 	}
 
 	@Override
 	public Member selectOneMember(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return sqlSession.selectOne("memberSQL.selectOne", userId);
 	}
 
 	@Override
