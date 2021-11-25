@@ -22,4 +22,6 @@ public class Camp {
 	private int picNo;
 	private String picName;
 	
+	
 }
+
