@@ -14,21 +14,22 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 	<script>
 		function fn_goBoardForm(){
-			location.href = "${pageContext.request.contextPath}/board/PsBoardForm.do";
+			location.href = "${pageContext.request.contextPath}/qnaboard/qnaBoardForm.do";
 		}
 		
 		$(function(){
 			$("tr[id]").on("click",function(){
-				var nNo = $(this).attr("id");
-				console.log("nNo="+nNo);
-				location.href = "${pageContext.request.contextPath}/board/PsBoardView.do?nNo="+nNo;
+				var askNo = $(this).attr("id");
+				console.log("nNo="+askNo);
+				location.href = "${pageContext.request.contextPath}/qnaboard/qnaBoardView.do?askNo="+askNo;
 			});
 		});
 	</script>
+	
 	</head>
 <body>
 	<div class="container">
-	   <c:import url="../common/header.jsp"/>
+
 	   	  <section id ="board-container">
 	     	 <div class="tableArea">
 	      
@@ -41,15 +42,15 @@
                         <th>작성일</th>                            
                         <th>작성자</th>
                      </tr>
-                        <c:forEach items = "${list}" var="ps">
-                           <tr id="${ps.NNo}">
-                              <td>${ps.NNo}</td>
-                              <td>${ps.NTitle}</td>
-                              <td>${ps.NContent} </td>
-                              <td>${ps.NDate}</td>
-                              <td>${ps.NWriter}</td>
+                        <c:forEach items = "${list}" var="qna">
+                           <tr id="${qna.askNo}">
+                              <td>${qna.askNo}</td>
+                              <td>${qna.askTitle}</td>
+                              <td>${qna.askContent} </td>
+                              <td>${qna.qnaDate}</td>
+                              <td>${qna.userId}</td>
                               <td align="center">
-                                    <c:if test="${ps.fileCount>0 }">
+                                    <c:if test="${qna.fileCount>0 }">
                                           <img alt="첨부파일" src="${pageContext.request.contextPath }>
                               </c:if>
                         </td>

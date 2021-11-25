@@ -21,7 +21,7 @@
 		function fileDownload(oldName, newName){
 			//한글파일명이 있을 수 있으므로, 명시적으로 encoding
 			oldName = encodeURIComponent(oldName);
-			location.href="${pageContext.request.contextPath}/board/fileDownload.do?oName="+oldName+"&newName="+newName;
+			location.href="${pageContext.request.contextPath}/qnaboard/fileDownload.do?oName="+oldName+"&newName="+newName;
 		}
 	</script>
 </head>
@@ -29,8 +29,8 @@
 	<div id="container">
 		
 		<div id="board-container">
-			<input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" value="${PsBoard.NTitle }" required>
-			<input type="text" class="form-control" name="boardWriter" value="${PsBoard.NWriter}" readonly required>
+			<input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" value="${qna.askTitle }" required>
+			<input type="text" class="form-control" name="boardWriter" value="${qna.userId}" readonly required>
 		
 			<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 				<button type="button" 
@@ -39,12 +39,12 @@
 					첨부파일${vs.count} - ${a.oldName }
 				</button>
 			</c:forEach>
-		    <textarea class="form-control" name="boardContent" placeholder="내용" required>${PsBoard.NContent }</textarea>
+		    <textarea class="form-control" name="boardContent" placeholder="내용" required>${qna.askContent }</textarea>
 		    <br>
-		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/board/PsBoardList.do'">리스트로</button>
-		    <c:if test="${member.userId eq PsBoard.NWriter}">
+		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/qnaBoardList.do'">리스트로</button>
+		    <c:if test="${member.userId eq qna.userId}">
 		    &nbsp;
-			<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateView.do?nNo=${PsBoard.NNo}'">수정 페이지</button>
+			<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/boardUpdateView.do?nNo=${qna.askNo}'">수정 페이지</button>
 			</c:if>
 		</div>
 		<c:import url="../common/footer.jsp"/>

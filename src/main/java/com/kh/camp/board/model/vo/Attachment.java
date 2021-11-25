@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Attachment implements Serializable{
 	
-	private static final long serialVersion = 6943L;
+	private static final long serialVersionUID = 6943L;
 	
 	private int afNo;
 	private int askNo;

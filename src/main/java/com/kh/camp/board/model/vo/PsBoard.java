@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Component
 public class PsBoard implements Serializable {
 	
-	private static final long serialVersionUTD = 79337L;
+	private static final long serialVersionUID = 79337L;
 	
 	private int nNo;
 	private int afNo;

@@ -55,40 +55,36 @@ public class PsBoardDAOImpl implements PsBoardDAO {
 		return sqlSession.selectList("psboardSQL.selectAttachmentList", nNo);
 	}
 
-	@Override
-	public int updateReadCount(int nNo) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("psboardSQL.updateReadCount", nNo);
-	}
 
 	@Override
 	public int updateBoard(PsBoard psboard) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("psboardSQL.updateBoard", psboard);
 	}
 
 	@Override
 	public int updateAttachment(Attachment a) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("psboardSQL.updateAttachment", a);
 	}
 
 	@Override
 	public int deleteBoard(int nNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("psboardSQL.deleteBoard", nNo);
 	}
 
 	@Override
 	public int deleteAttachment(int nNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("psboardSQL.deleteAttachment", nNo);
 	}
 
 	@Override
-	public int deleteFile(int attNo) {
+	public int deleteFile(int afNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("psboardSQL.deleteFile", afNo);
 	}
+
 
 }

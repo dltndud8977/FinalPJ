@@ -1,4 +1,4 @@
-package com.kh.camp.board.controller;
+package com.kh.camp.qnaboard.controller;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -23,73 +23,69 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kh.camp.board.model.service.PsBoardService;
 import com.kh.camp.board.model.vo.Attachment;
 import com.kh.camp.board.model.vo.PsBoard;
-import com.kh.camp.member.model.vo.Member;
 import com.kh.camp.common.Utils;
-
-
-
-
-
+import com.kh.camp.qnaboard.model.service.qnaBoardService;
+import com.kh.camp.qnaboard.model.vo.qnaBoard;
 
 @Controller
-public class BoardController {
+public class qnaBoardController {
 		
 	@Autowired
-	PsBoardService PsBoardService;
+	qnaBoardService qnaBoardService;
 	
-	@RequestMapping("/board/PsBoardList.do")
+	// 조회
+	@RequestMapping("/qnaboard/qnaBoardList.do")
 	public String selectBoardList(
-			@RequestParam(value="cPage", required=false, defaultValue="1") int cPage, Model model
-			) {
-			// 페이지의 게시글 수
-			int numPerPage = 10;
-			
-			// 현 페이지의 게시글 수
-			List<Map<String, String>> list = PsBoardService.selectBoardList(cPage, numPerPage);
+	@RequestParam(value="cPage", required=false, defaultValue="1") int cPage, Model model
+	) {
 		
-			// 전체 게시글 수
-			
-			int totalContents = PsBoardService.selectBoardTotalContents();
-			
-			// 페이지 처리 Utils 사용하기
-			String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, "PsBoardList.do");
-
-			System.out.println("list : " + list);
-			System.out.println("pageBar : " + pageBar);
-			
-			model.addAttribute("list", list);
-			model.addAttribute("totalContents", totalContents);
-			model.addAttribute("numPerPage", numPerPage);
-			model.addAttribute("pageBar", pageBar);
-			
-			return "board/PsBoardList";
-		}
-	// 글 작성
-	@RequestMapping("/board/PsBoardForm.do")
-	public String PsBoardForm() { 
-		
-		return "board/PsBoardForm";
-	}
+	int numPerPage = 10;
 	
-	// 글 저장
-	@RequestMapping("/board/PsBoardFormEnd.do")
-	public String insertBoard(PsBoard psboard, Model model, HttpServletRequest req,
+	List<Map<String, String>> list = qnaBoardService.selectBoardList(cPage, numPerPage);
+	
+	int totalContents = qnaBoardService.selectBoardTotalContents();
+	
+	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, "qnaBoardList.do");
+	
+	System.out.println("list : " + list);
+	System.out.println("pageBar : " + pageBar);
+	
+	model.addAttribute("list", list);
+	model.addAttribute("totalContents", totalContents);
+	model.addAttribute("numPerPage", numPerPage);
+	model.addAttribute("pageBar", pageBar);
+	
+	return "qnaboard/qnaBoardList";
+ }			
+	
+	// 글 작성
+		@RequestMapping("/qnaboard/qnaBoardForm.do")
+		public String qnaBoardForm() { 
+			
+			return "qnaboard/qnaBoardForm";
+		}	
+			
+	@RequestMapping("/qnaboard/qnaBoardFormEnd.do")
+	public String insertBoard(qnaBoard qnaboard, Model model, HttpServletRequest req,
 							@RequestParam(value="upFile", required=false)MultipartFile[] upFiles) {
-		// 1. 파일 저장 경로 or 정보 객체
+		
+		// 저장 경로
 		String savePath = req.getServletContext().getRealPath("/resources/boardUpload");
 		List<Attachment> attachList = new ArrayList<Attachment>();
 		
-		System.out.println("psboard :" + psboard );
-		// 2. 파일 업로드
+		System.out.println("qnaboard : " + qnaboard);
+		
+		//업로드
+		
 		for(MultipartFile f : upFiles) {
 			if(f.isEmpty() == false) {
-				// 3. 파일 이름 변경
+			// 이름 변경
 				String oldName = f.getOriginalFilename(); //원본
 				String newName = fileNameChanger(oldName);
-			
+				
+				
 				try {
 					f.transferTo(new File(savePath + "/" + newName));
 				} catch (IllegalStateException e) {
@@ -101,15 +97,16 @@ public class BoardController {
 				}
 				
 				Attachment a = new Attachment();
-
+				
 				a.setOldName(oldName);
 				a.setNewName(newName);
+				
 			}
 		}
 		
 		// DB 등록
-		int result = PsBoardService.insertBoard(psboard, attachList);
-		String loc = "/board/PsBoardList.do";
+		int result = qnaBoardService.insertBoard(qnaboard, attachList);
+		String loc = "/qnaboard/qnaBoardList.do";
 		String msg = "";
 		
 		
@@ -131,21 +128,23 @@ public class BoardController {
 		int rnd = (int)(Math.random() * 1000);
 		
 		return sdf.format(new Date(System.currentTimeMillis()))+ "_" + rnd + "." + ext;
+		
+		
 	}
-	
-	@RequestMapping("/board/PsBoardView.do")
-	public String boardView(@RequestParam int nNo, Model model) {
+	@RequestMapping("/qnaboard/qnaBoardView.do")
+	public String boardView(@RequestParam int askNo, Model model) {
 		
-		PsBoard psboard = PsBoardService.selectOneBoard(nNo);
-		List<Attachment> attachmentList = PsBoardService.selectAttachmentList(nNo);
+		qnaBoard qnaboard = qnaBoardService.selectOneBoard(askNo);
+		List<Attachment> attachmentList = qnaBoardService.selectAttachmentList(askNo);
 		
-		model.addAttribute("PsBoard", psboard);
+		model.addAttribute("qnaBoard", qnaboard);
 		model.addAttribute("attachmentList", attachmentList);
 		
-		return "board/PsBoardView";
-	}
+		return "qnaboard/qnaBoardView";
+	}		
 	
-	@RequestMapping("/board/fileDownload.do")
+	
+	@RequestMapping("/qnaboard/fileDownload.do")
 	public void fileDownload(@RequestParam String oldName,
 							 @RequestParam String newName,
 							 HttpServletRequest request,
@@ -198,35 +197,36 @@ public class BoardController {
 			}
 		}
 	}
-	@RequestMapping("/board/boardUpdateView.do")
-	public String boardUpdateView(@RequestParam int nNo, Model model) {
+	
+	@RequestMapping("/qnaboard/qnaboardUpdateView.do")
+	public String boardUpdateView(@RequestParam int askNo, Model model) {
 		
-		PsBoard psboard = PsBoardService.updateView(nNo);
+		qnaBoard qnaboard = qnaBoardService.updateView(askNo);
 		
-		List<Attachment> attachmentList = PsBoardService.selectAttachmentList(nNo);
+		List<Attachment> attachmentList = qnaBoardService.selectAttachmentList(askNo);
 		
-		model.addAttribute("psboard", psboard);
+		model.addAttribute("qnaboard", qnaboard);
 		model.addAttribute("attachmentList", attachmentList);
 		
-		return "board/PsBoardUpdateView";		
+		return "qnaboard/qnaBoardUpdateView";		
 	}
 	
-	@RequestMapping("/board/boardUpdate.do")
-	public String boardUpdate(PsBoard psboard, HttpServletRequest request, Model model, 
+	@RequestMapping("/qnaboard/qnaboardUpdate.do")
+	public String boardUpdate(qnaBoard qnaboard, HttpServletRequest request, Model model, 
 							  @RequestParam(value="upFile", required=false) MultipartFile[] upFiles) {
 		// 1. 원본 게시글 불러와 수정하기
-		int nNo = psboard.getNNo();
+		int askNo = qnaboard.getAskno();
 		
-		PsBoard originBoard = PsBoardService.updateView(nNo);
+		qnaBoard originBoard = qnaBoardService.updateView(askNo);
 
-		originBoard.setNTitle( psboard.getNTitle() );
-		originBoard.setNContent( psboard.getNContent() );
+		originBoard.setAsktitle(qnaboard.getAsktitle());
+		originBoard.setAskcontent(qnaboard.getAskcontent());
 		 
 		
 		// 2. 첨부파일 수정하기
 		String savePath = request.getServletContext().getRealPath("/resources/boardUpload");
 		
-		List<Attachment> attachList = PsBoardService.selectAttachmentList(nNo);
+		List<Attachment> attachList = qnaBoardService.selectAttachmentList(askNo);
 		if( attachList == null ) attachList = new ArrayList<Attachment>();
 		
 		int idx = 0;
@@ -242,9 +242,10 @@ public class BoardController {
 					temp = attachList.get(idx);
 				} else {
 					temp = new Attachment();
-					temp.setNNo(nNo);
+					temp.setAskNo(askNo);
 					
 					attachList.add(temp);
+					 
 				}
 				
 				// 파일 저장용 이름 바꾸기
@@ -268,9 +269,9 @@ public class BoardController {
 			idx++;
 		}
 		
-		int result = PsBoardService.updateBoard(originBoard, attachList);  // 서비스 찾아가서 마저 구현해주기
+		int result = qnaBoardService.updateBoard(originBoard, attachList);  // 서비스 찾아가서 마저 구현해주기
 		
-		String loc = "/board/PsBoardList.do";
+		String loc = "/qnaboard/qnaBoardList.do";
 		String msg = "";
 		
 		if( result > 0 ) {
@@ -285,7 +286,8 @@ public class BoardController {
 		return "common/msg";
 	}
 	
-	@RequestMapping("/board/fileDelete.do")
+	
+	@RequestMapping("/qnaboard/fileDelete.do")
 	@ResponseBody
 	public boolean fileDelete(@RequestParam int afNo,
 							  @RequestParam String newName,
@@ -294,7 +296,7 @@ public class BoardController {
 		String savePath = request.getServletContext().getRealPath("/resources/boardUpload");
 		
 		// 1. DB에서 첨부파일 삭제
-		int result = PsBoardService.deleteFile(afNo);
+		int result = qnaBoardService.deleteFile(afNo);
 		
 		if( result == 1 ) {
 			File goodbye = new File(savePath + "/" + newName);
@@ -307,20 +309,20 @@ public class BoardController {
 		}
 	}
 	
-	@RequestMapping("/board/boardDelete.do")
-	public String boardDelete(@RequestParam int nNo,
+	@RequestMapping("/qnaboard/boardDelete.do")
+	public String boardDelete(@RequestParam int askNo,
 							  HttpServletRequest request,
 							  Model model) {
 		
 		String savePath = request.getServletContext().getRealPath("/resources/boardUpload");
 		
 		// 첨부파일삭제 명단
-		List<Attachment> delList = PsBoardService.selectAttachmentList(nNo);
+		List<Attachment> delList = qnaBoardService.selectAttachmentList(askNo);
 		
 		// 게시글 삭제
-		int result = PsBoardService.deleteBoard(nNo); // 서비스 이동~!
+		int result = qnaBoardService.deleteBoard(askNo); // 서비스 이동~!
 		
-		String loc = "/board/PsBoardList.do";
+		String loc = "/qnaboard/qnaBoardList.do";
 		String msg = "";
 		
 		if( result > 0 ) {
