@@ -20,15 +20,16 @@
             background: lightpink;
             
         }
-        nav{
+        main{
             display:inline-table;
             position:absolute;
-            top : 20%;
+            top : 10%;
             left : 10%;
             align : center;
             
         } 
-        nav ul li{
+        main ul li{
+        	margin-top : 100px;
             list-style: none;
             margin-bottom : 300px;
             border: 1px solid black;
@@ -44,17 +45,18 @@
         }
       
 
-        li:hover {
-            background: red;
-            color: white;
+        #reservation {
+            background: rgba(176, 196, 222,.7);
+            color: black;
         }
         .text{
+        	margin-top : 50px;
        	    position: absolute;
             width: 800px;
             height: 700px;
             top:5%;
             left: 130%;
-            border: 1px solid red; 
+             
             
             font-size: 15pt;
             text-align: left;
@@ -62,44 +64,28 @@
             color: black;
            
         }
+        
 
-        li:hover .text{
-            visibility: visible;
+             
+        #count{
+        		position : absolute;
+				height: 100px;
+				width : 400px;
+				left : 25%;
+				
+			}
+        table {
+        	text-align : center;
         }
-        @media (max-width:1500px) {
-            nav{
-                left:0px;
-                transition : left 0.5s ease-out;
-            }
-            header{ 
-            font-size: 20px;
-            border: 1px solid green;
-            text-align: center;
-            background: lightpink;
-            transition : font-size 0.5s ease-out;
-            }
-        }
-               
-        @media (max-width:874px) {
-            h1{
-                font-size: 25px;
-                transition : font-size 0.5s ease-out;
-            }
-            .text{
-                width: 400px;
-                height: 15em;
-                font-size: 17px;
-                left: 50px;
-                top:300px;
-                padding:5px;
-            }
-            .pic{
-                width: 20rem;
-                height:10rem;
-                left:100px;
-            }
-        }
-
+      .page-item{
+      	width : 70px;
+      	border : none;
+      }
+      .page-link {
+      	width:50px;
+      	
+      }
+			
     </style>
 <title>관리자 페이지</title>
 </head>
@@ -107,15 +93,13 @@
 
 <c:import url="../common/header.jsp"/>
 
- <nav>
+ <main>
     <ul>
       
         <li id="reservation">
             예약관리
             
-            <div class="text">
-                예약 관리
-            </div>
+          
         </li>
         <li id="member">
             회원관리
@@ -129,7 +113,65 @@
         </li>
        
     </ul>
-    </nav>
+   
+    <div class="text">
+    	<canvas id="myChart"></canvas>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+		
+	 </div>
+	
+	 
+	 <script>
+	   var arrayNames = []; // 날짜
+       var arrayVisit = []; // 방문수
+       var arrayReserve = []; //예약수  
+       
+      <c:forEach items="${list}" var="m">
+			arrayNames.push("${m.visitDate}");
+			arrayVisit.push("${m.visitCount}");
+			arrayReserve.push("${m.reserCount}");
+       </c:forEach>
+       var visitBack = [];
+       var visitBorder = [];
+       var reserveBack = [];
+       var reserveBorder = [];
+       for(var i=0; i<arrayNames.length; i++){
+       visitBack.push("rgba(255, 99, 132, 0.2)");
+       visitBorder.push("rgb(255, 99, 132)");
+       reserveBack.push("rgba(255, 205, 86, 0.2)");
+       reserveBorder.push("rgb(255, 205, 86)");
+       }
+           var ctx = document.getElementById('myChart').getContext('2d');
+           var myBarChart = new Chart(ctx, {
+               type : 'bar',
+               data : {
+                   labels : arrayNames,
+                   datasets:[{
+                       label: "방문자수",
+                       data : arrayVisit,
+                       backgroundColor:visitBack,
+                       borderColor:visitBorder,
+                       borderWidth:1
+                   },{
+                       label: "예약수",
+                       data : arrayReserve,
+                       backgroundColor:reserveBack,
+                       borderColor:reserveBorder,
+                       borderWidth:1
+                   }]},
+               options:{
+                   scales: { 
+                       yAxes :[{ ticks:{ beginAtZero : true } }]
+                   }
+               }
+           });
+      
+		
+    </script>
+
+		
+   
+    </main>
     
     <script>
     	$(function() {

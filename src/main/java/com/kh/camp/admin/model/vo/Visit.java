@@ -1,4 +1,4 @@
-package com.kh.camp.reserve.model.vo;
+package com.kh.camp.admin.model.vo;
 
 import org.springframework.stereotype.Component;
 
@@ -10,13 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Room {
+public class Visit {
 
-	private int roomNo;
-	private String roomName;
-	private String roomPicture;
-	private String roomPrice;
-	private String campName;
+	private String visitDate;
+	private int visitCount;
+	private int reserCount;
 }
-
-

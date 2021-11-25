@@ -14,10 +14,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class Reservation {
 
-	private int rNo     ;
-	private Date checkIn ;
+	private int rNo;
+	private Date checkIn;
 	private Date checkOut;
-	private String rStatus ;
-	private String userId  ;
-	private int roomNo  ;
+	private String rStatus;
+	private String userId;
+	private String roomName;
+	private String campName;
+	
+	
 }
