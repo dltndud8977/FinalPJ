@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class Room {
 
-	private String roomNo;
+	private int roomNo;
 	private String roomName;
 	private String roomPicture;
 	private String roomPrice;
-	private String campNo;
+	private String campName;
 }

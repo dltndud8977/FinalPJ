@@ -45,4 +45,8 @@
 	<update id="expire" parameterType="Member">
 		UPDATE BSMEMBER SET BSENDDATE = NULL, BSSTATUS= 'N' WHERE (BSENDDATE &lt; SYSDATE)
 	</update>
+	
+	<select id="visit" resultType="Visit">
+		SELECT * FROM VISIT
+	</select>
 </mapper>

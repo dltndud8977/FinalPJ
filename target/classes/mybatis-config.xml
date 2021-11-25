@@ -20,6 +20,7 @@
 
  		<typeAlias alias="PsBoard" type="com.kh.camp.board.model.vo.PsBoard"/>
  		<typeAlias alias="Attachment" type="com.kh.camp.board.model.vo.Attachment"/>
+ 		<typeAlias alias="Visit" type="com.kh.camp.admin.model.vo.Visit" />
 
  	<!-- 
  		<typeAlias alias="Dev" type="com.kh.camp.demo.model.vo.Dev"/>
