@@ -15,27 +15,6 @@
 	</select>
 	
 	<insert id="reservation" parameterType="Reservation">
-		INSERT INTO RESER_INFO VALUES(SEQ_RNO.NEXTVAL, #{ checkIn }, #{ checkOut },'Y', #{ userId }, #{ campName }, #{ roomName } )
+		INSERT INTO RESER_INFO VALUES(SEQ_RNO.NEXTVAL, #{ checkIn }, #{ checkOut }, #{ rStatus }, #{ userId }, #{ roomNo } )
 	</insert>
-	
-	<select id="getBoard" parameterType="int" resultType="PsBoard">
-		SELECT * FROM PSBOARD WHERE CAMPNO = #{ campNo } 
-	</select>
-	
-	<select id="myReservation" parameterType="string" resultType="Reservation">
-		SELECT * FROM RESER_INFO WHERE USERID = #{ userId } AND RSTATUS='Y' AND CHECKOUT >= SYSDATE
-	</select>
-
-	<update id="reserveCount">
-		UPDATE VISIT SET RESERCOUNT = RESERCOUNT + 1 WHERE VISITDATE=SUBSTR(SYSDATE,1,5)
-	</update>
-		
-	<update id="cancelReserve" parameterType="int">
-		UPDATE RESER_INFO SET RSTATUS ='N' WHERE RNO = #{ rNo }
-	</update>
-	
-	<select id="reserveFull" parameterType="string" resultType="Reservation">
-		SELECT * FROM RESER_INFO WHERE RSTATUS='Y' AND CAMPNAME = #{ campName }
-	</select>
-
 </mapper>
