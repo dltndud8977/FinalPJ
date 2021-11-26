@@ -9,4 +9,12 @@
 		#{ explain })
 	</insert>
 
+	<select id="selectWeather" resultType="campInfo">
+		SELECT * FROM CAMP_INFO
+	</select>
+	
+	<select id="selectTraffic" resultType="campInfo">
+		SELECT * FROM CAMP_INFO
+	</select>
+	
 </mapper>

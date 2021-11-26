@@ -372,6 +372,9 @@ function removeAllChildNods(el) {
       <option selected>(*날씨api용 필수 선택)</option>
       <option value="Seoul" >서울</option>
 	  <option value="Gyeonggi-do" >경기</option>
+	  <option value="Gwangju" >광주</option>
+	  <option value="Gunpo" >군포</option>
+	  <option value="Yongin" >용인</option>
     </select>
   </div>
 

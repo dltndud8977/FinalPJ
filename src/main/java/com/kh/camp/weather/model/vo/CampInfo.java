@@ -2,6 +2,8 @@ package com.kh.camp.weather.model.vo;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Component
 public class CampInfo implements Serializable{
 
 	private int campNo;
