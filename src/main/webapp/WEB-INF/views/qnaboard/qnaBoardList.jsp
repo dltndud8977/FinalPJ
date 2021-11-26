@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+\<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -37,6 +37,7 @@
                   <table id="listArea" class="table table-striped table-hover">
                      <tr>
                         <th>번호</th>
+                        <th>문의유형</th>
                         <th>제목</th>               
                         <th>내용</th>               
                         <th>작성일</th>                            
@@ -45,9 +46,10 @@
                         <c:forEach items = "${list}" var="qna">
                            <tr id="${qna.askNo}">
                               <td>${qna.askNo}</td>
+                                <td>${qna.askCategory}</td>
                               <td>${qna.askTitle}</td>
                               <td>${qna.askContent} </td>
-                              <td>${qna.qnaDate}</td>
+                              <td>${qna.askDate}</td>
                               <td>${qna.userId}</td>
                               <td align="center">
                                     <c:if test="${qna.fileCount>0 }">

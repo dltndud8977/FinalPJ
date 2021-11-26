@@ -10,7 +10,7 @@
 	<title>게시판 상세보기</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-	<c:import url="../common/header.jsp"/>
+	
 	<style>
 		div#board-container{width:400px; margin:0 auto; text-align:center;}
 		div#board-container input,div#board-container button{margin-bottom:15px;}
@@ -18,6 +18,7 @@
 		div#board-container label.custom-file-label{text-align:left;}
 	</style>
 	<script>
+		
 		function fileDownload(oldName, newName){
 			//한글파일명이 있을 수 있으므로, 명시적으로 encoding
 			oldName = encodeURIComponent(oldName);
@@ -29,8 +30,8 @@
 	<div id="container">
 		
 		<div id="board-container">
-			<input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" value="${qna.askTitle }" required>
-			<input type="text" class="form-control" name="boardWriter" value="${qna.userId}" readonly required>
+			<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaBoard.askTitle }" required>
+			<input type="text" class="form-control" name="userId" value="${qnaBoard.userId}" readonly required>
 		
 			<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 				<button type="button" 
@@ -39,13 +40,22 @@
 					첨부파일${vs.count} - ${a.oldName }
 				</button>
 			</c:forEach>
-		    <textarea class="form-control" name="boardContent" placeholder="내용" required>${qna.askContent }</textarea>
+		    <textarea class="form-control" name="askContent" placeholder="내용" required>${qnaBoard.askContent }</textarea>
 		    <br>
+		    
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/qnaBoardList.do'">리스트로</button>
-		    <c:if test="${member.userId eq qna.userId}">
+		    <c:if test="${member.userId eq qnaBoard.userId}">
 		    &nbsp;
-			<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/boardUpdateView.do?nNo=${qna.askNo}'">수정 페이지</button>
+			<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/qnaBoardUpdateView.do?askNo=${qnaBoard.askNo}'">수정 페이지</button>
 			</c:if>
+			
+			
+		</div>
+		
+		<div id="reply-board-container">
+		<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaBoard.askTitle }" readonly required>
+		<input type="hidden" class="form-control" name="answerId" value="${member.userType==3 }" readonly required>
+		 <textarea class="form-control" name="answerContent" placeholder="내용" required>${qnaBoard.answerContent }</textarea>
 		</div>
 		<c:import url="../common/footer.jsp"/>
 	</div>

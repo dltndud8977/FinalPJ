@@ -20,7 +20,6 @@
 	
 	<select id="bsmemberList" resultType="Member">
 		SELECT * FROM MEMBER M 
-		JOIN BSMEMBER B ON(M.USERID = B.USERID) 
 		WHERE USERSTATUS='Y' AND USERTYPE=2
 	</select>
 	
@@ -29,20 +28,24 @@
 	</select>
 	
 	<select id="selectOne" resultType="Member" parameterType="string">
-		SELECT * FROM MEMBER M
-		JOIN BSMEMBER B ON(M.USERID = B.USERID) 
+		SELECT * FROM MEMBER 
 		WHERE USERSTATUS='Y' AND BSNO= #{ bsNo }
 	</select>
 	
 	<update id="extendContract" parameterType="string">
-		UPDATE BSMEMBER SET BSSTATUS= 'Y', BSENDDATE = SYSDATE + 30 WHERE BSNO= #{ bsNo }
+		UPDATE MEMBER SET BSSTATUS= 'Y', BSENDDATE = SYSDATE + 30 WHERE BSNO= #{ bsNo }
 	</update>
 	
 	<update id="extendContract1" parameterType="string">
-		UPDATE BSMEMBER SET BSENDDATE = BSENDDATE + 30 WHERE BSNO= #{ bsNo }
+		UPDATE MEMBER SET BSENDDATE = BSENDDATE + 30 WHERE BSNO= #{ bsNo }
 	</update>
 	
 	<update id="expire" parameterType="Member">
-		UPDATE BSMEMBER SET BSENDDATE = NULL, BSSTATUS= 'N' WHERE (BSENDDATE &lt; SYSDATE)
+		UPDATE MEMBER SET BSENDDATE = NULL, BSSTATUS= 'N' WHERE (BSENDDATE &lt; SYSDATE)
 	</update>
+	
+	<select id="visit" resultType="Visit">
+      SELECT * FROM VISIT
+   </select>
+	
 </mapper>

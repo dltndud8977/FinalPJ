@@ -48,9 +48,9 @@
 	<div id="container">
 	
 		<div id="board-container">
-			<form name="boardFrm" action="${pageContext.request.contextPath}/board/PsBoardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
-				<input type="text" class="form-control" placeholder="제목" name="nTitle" id="boardTitle" required>
-				<input type="text" class="form-control" name="nWriter" value="${member.userId}" readonly required>
+			<form name="boardFrm" action="${pageContext.request.contextPath}/qnaboard/qnaBoardFormEnd.do" method="post"  enctype="multipart/form-data">
+				<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" required>
+				<input type="text" class="form-control" name="userId" value="${member.userId}" readonly required>
 				<div class="col-lg-4">
 									<div class="checkout__input">
 										<p>
@@ -60,12 +60,11 @@
 												</span>
 										</p>
 										<div>
-											<select id="campNo" name="campNo" class="form">
+											<select id="campNo" name="askCategory" class="form">
 												<option value="-" selected="selected">선택하세요
-												<option value="1">양평금물산하늘소캠핑장
-												<option value="2">청계산골든밸리캠핑장
-											    <option value="3">용인반딧불캠핑장
-												<option value="4">광명도덕산캠핑장
+												<option value="1">문의사항
+												<option value="2">사업자 등록
+											    
 											</select>
 										</div>
 									</div>
@@ -90,9 +89,9 @@
 				    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
 				  </div>
 				</div>
-			    <textarea class="form-control" name="nContent" placeholder="내용" required></textarea>
+			    <textarea class="form-control" name="askContent" placeholder="내용" required></textarea>
 				<br />
-				<input type="submit" class="btn btn-outline-success" value="저장" >
+				<input type="submit" class="btn btn-outline-success"  value="저장" >
 			</form>
 		</div>
 		<c:import url="../common/footer.jsp"/>

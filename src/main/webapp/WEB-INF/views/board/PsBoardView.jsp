@@ -10,7 +10,7 @@
 	<title>게시판 상세보기</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-	<c:import url="../common/header.jsp"/>
+
 	<style>
 		div#board-container{width:400px; margin:0 auto; text-align:center;}
 		div#board-container input,div#board-container button{margin-bottom:15px;}
@@ -29,8 +29,8 @@
 	<div id="container">
 		
 		<div id="board-container">
-			<input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" value="${PsBoard.NTitle }" required>
-			<input type="text" class="form-control" name="boardWriter" value="${PsBoard.NWriter}" readonly required>
+			<input type="text" class="form-control" placeholder="제목" name="NTitle" id="boardTitle" value="${PsBoard.NTitle }" required>
+			<input type="text" class="form-control" name="NWriter" value="${PsBoard.NWriter}" readonly required>
 		
 			<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 				<button type="button" 
@@ -39,7 +39,7 @@
 					첨부파일${vs.count} - ${a.oldName }
 				</button>
 			</c:forEach>
-		    <textarea class="form-control" name="boardContent" placeholder="내용" required>${PsBoard.NContent }</textarea>
+		    <textarea class="form-control" name="NContent" placeholder="내용" required>${PsBoard.NContent }</textarea>
 		    <br>
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/board/PsBoardList.do'">리스트로</button>
 		    <c:if test="${member.userId eq PsBoard.NWriter}">

@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>게시글 수정</title>
-	<c:import url="../common/header.jsp"/>
+
 	<style>
 		div#board-container{width:400px; margin:0 auto; text-align:center;}
 		div#board-container input{margin-bottom:15px;}
@@ -18,7 +18,7 @@
 	<script>
 	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 	function validate(){
-		var qnaContent = $("[name=qnaContent]").val();
+		var qnaContent = $("[name=nContent]").val();
 		if(content.trim().length==0){
 			alert("내용을 입력하세요");
 			return false;
@@ -39,12 +39,12 @@
 	function fileDownload(oldName, newName){
 		//한글파일명이 있을 수 있으므로, 명시적으로 encoding
 		oldName = encodeURIComponent(oldName);
-		location.href="${pageContext.request.contextPath}/qnaboard/fileDownload.do?oName="+oldName+"&newName="+newName;
+		location.href="${pageContext.request.contextPath}/board/fileDownload.do?oName="+oldName+"&newName="+newName;
 	}
 
 	function fileDelete(obj, afNo, rName){
 		$.ajax({
-			url : '${pageContext.request.contextPath}/qnaboard/fileDelete.do',
+			url : '${pageContext.request.contextPath}/board/fileDelete.do',
 			data : { afNo : afNo, rName : rName }, 
 			dataType : 'json',
 			success : function(data){
@@ -67,10 +67,10 @@
 	<div id="container">
 	
 		<div id="board-container">
-			<form name="boardFrm" action="${pageContext.request.contextPath}/qnaboard/boardUpdate.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
-				<input type="hidden" name="askNo" value="${ qna.askNo }" />
-				<input type="text" class="form-control" placeholder="제목" name="qnaTitle" id="boardTitle" value="${qna.askTitle}" required>
-				<input type="text" class="form-control" name="userId value="${qna.userId}" readonly required>
+			<form name="boardFrm" action="${pageContext.request.contextPath}/board/boardUpdate.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
+				<input type="hidden" name="nNo" value="${ psboard.NNo }" />
+				<input type="text" class="form-control" placeholder="제목" name="NTitle" id="boardTitle" value="${psboard.NTitle}" required>
+				<input type="text" class="form-control" name="NWriter" value="${member.userId}" readonly required>
 				<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 					<div class="rows">
 						<button type="button" class="btn btn-outline-success col-8"
@@ -100,10 +100,10 @@
 				    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
 				  </div>
 				</div>
-			    <textarea class="form-control" name="qnaContent" placeholder="내용" required>${qna.askContent}</textarea>
+			    <textarea class="form-control" name="NContent" placeholder="내용" required>${psboard.NContent}</textarea>
 				<br />
 				<input type="submit" class="btn btn-outline-success" value="수정 완료" /> &nbsp;
-				<input type="button" class="btn btn-outline-danger" value="삭제" onclick="location.href='${pageContext.request.contextPath}/qnaboard/boardDelete.do?nNo=${psboard.NNo}'"/>
+				<input type="button" class="btn btn-outline-danger" value="삭제" onclick="location.href='${pageContext.request.contextPath}/board/boardDelete.do?nNo=${psboard.NNo}'"/>
 			</form>
 		</div>
 		<c:import url="../common/footer.jsp"/>

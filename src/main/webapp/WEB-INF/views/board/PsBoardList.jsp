@@ -28,7 +28,7 @@
 	</head>
 <body>
 	<div class="container">
-	   <c:import url="../common/header.jsp"/>
+	   
 	   	  <section id ="board-container">
 	     	 <div class="tableArea">
 	      
