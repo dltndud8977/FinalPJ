@@ -34,7 +34,7 @@ public class RegistController {
 		CampInfo ci = new CampInfo();
 		
 		ci.setCampName(pname);
-		ci.setCampLa(lngclick);
+		ci.setCampLa(latclick);
 		ci.setCampLo(lngclick);
 		ci.setCampArea(city);
 		ci.setCampTel(phone);

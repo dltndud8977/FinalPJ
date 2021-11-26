@@ -157,13 +157,22 @@ table tr:nth-child(13), table tr:nth-child(14){
 
 		// 지도의 우측에 확대 축소 컨트롤을 추가한다
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		var li = [];
+		var lo = [];
+		var campName = [];
+		var area = [];
+		var campData = [];
+		<c:forEach items="${list}" var="cam">
 		
-		var campData = [
-			[37.550887, 127.790234, "양평 금물산 하늘소 캠프", "Gyeonggi-do"],
-			[37.131162, 127.295752, "용인 반딧불 캠핑장", "Yongin"],
-			[37.416009, 127.078084, "청계산 골든벨리 캠핑장", "Seongnam-si"],
-			[37.459397, 126.860457, "광명 도덕산 캠핑장", "Seongnam-si"]
-		];
+		li.push("${cam.campLa}");
+		lo.push("${cam.campLo}");
+		campName.push("${cam.campName}");
+		area.push("${cam.campArea}");
+		
+		campData.push({"li":"${cam.campLa}","lo":"${cam.campLo}","name":"${cam.campName}","area":"${cam.campArea}"})
+		
+		</c:forEach>
+		/* console.log(li); */
 		
 		$(function(){
 			setOverlayMapTypeId('weather');		
@@ -173,26 +182,26 @@ table tr:nth-child(13), table tr:nth-child(14){
 			if(typeId == 'weather'){
 				for(var i=0; i<campData.length; i++){	
 					var campDataOne = campData[i];
-					
+					console.log(campDataOne);
 					$.ajax({
-						url : 'https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne[3] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
+						url : 'https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne['area'] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
 						async: false,
 						success : function(wData){
 						//alert(wData.weather[0].icon);
 						var $ctemp = wData.main.temp;
 						var $cwind = wData.wind.speed;
 						var $cicon = wData.weather[0].icon;
-						
+						/* console.log(wData); */
 						
 							// 지도에 마커를 생성하고 표시한다
 							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(campDataOne[0], campDataOne[1]), // 마커의 좌표
+							    position: new kakao.maps.LatLng(campDataOne['li'], campDataOne['lo']), // 마커의 좌표
 							    map: map // 마커를 표시할 지도 객체
 							});
 		
 							// 인포윈도우를 생성합니다
 							var infowindow = new kakao.maps.InfoWindow({
-							    content : '<div class="campName">'+ campDataOne[2] + '</div>'
+							    content : '<div class="campName">'+ campDataOne['name'] + '</div>'
 							    		  +'<div class="temp">'+ '<img src="http://openweathermap.org/img/wn/'+$cicon+'.png">' + $ctemp +"℃"+ '</div>'
 							    		  +'<div class="wind">'+ "바람 : " + $cwind + "m/s" + '</div>'
 							});
@@ -227,7 +236,7 @@ table tr:nth-child(13), table tr:nth-child(14){
 					var campDataOne = campData[i];
 					
 					$.ajax({
-						url : 'https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne[3] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
+						url : 'https://api.openweathermap.org/data/2.5/weather?q='+ campDataOne['area'] +'&appid=7e29e09b03f53da4e88f28bcbcecffd0&units=Metric',
 						async: false,
 						success : function(wData){
 						//alert(wData.weather[0].icon);
@@ -238,13 +247,13 @@ table tr:nth-child(13), table tr:nth-child(14){
 						
 							// 지도에 마커를 생성하고 표시한다
 							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(campDataOne[0], campDataOne[1]), // 마커의 좌표
+							    position: new kakao.maps.LatLng(campDataOne['li'], campDataOne['lo']), // 마커의 좌표
 							    map: map // 마커를 표시할 지도 객체
 							});
 							
 							// 인포윈도우를 생성합니다
 							var infowindow = new kakao.maps.InfoWindow({
-							    content :  '<div class="campName">'+ campDataOne[2] + '</div>'
+							    content :  '<div class="campName">'+ campDataOne['name'] + '</div>'
 							    		  +'<div class="campIndex">'+ getCampIndex($cwind) +  '</div>'
 							});
 							console.log(infowindow);
