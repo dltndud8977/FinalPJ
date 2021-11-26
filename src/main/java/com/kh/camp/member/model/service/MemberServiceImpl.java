@@ -1,5 +1,7 @@
 package com.kh.camp.member.model.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,20 +30,22 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return memberDAO.updateMember(member);
 	}
 
 	@Override
 	public int deleteMember(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return memberDAO.deleteMember(userId);
 	}
 
 	@Override
 	public int checkIdDuplicate(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		hmap.put("uesrId", userId);
+		
+		return memberDAO.checkIdDuplicate(hmap);
 	}
 	
 	

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>사업자 회원가입</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/enroll.css" />
 
@@ -14,20 +14,24 @@
 <body>
 	
 	
-	<div class="memberEnroll">
+	<div class="bsMemberEnroll">
 	<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/shadowlogo.png" alt="logo" /></a>
-	<form id="insertMemberForm" action="memberEnrollEnd.do" method="post">
+	<form id="insertMemberForm" action="bsMemberEnrollEnd.do" method="post">
 		<ul>
-
-			<li><label>아이디
-			<div id="userId-container" style="margin-top : 0;">
-			<input type="text" name="userId" id="userId_" size="61" required style="display:block;"/>
+			<li><label>사업장 번호<br />
+			<input type="text" name="bsNo" id="no" size="61" required />
+			</label></li>
+			<li><label>사업장 명<br />
+			<input type="text" name="bsName" id="name" size="61" required />
+			</label></li>
+		
+			<li><label>아이디<br />
+			<input type="text" name="userId" id="id" size="61" required />
 			<!-- 아이디중복검사 코멘트추가 -->
-				<span class="guide ok">사용 가능</span>
- 	          	<span class="guide error">사용 불가</span>
-				<span class="guide invalid"> 4글자 미만</span>
+			<span class="guide ok">사용 가능</span>
+			<span class="guide error">사용 불가</span>
+			<span class="guide invalid">4글자 미만</span>
 			<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0"/>
-			</div>
 			</label></li>
 			
 			<li><label>비밀번호<br />
@@ -39,7 +43,7 @@
 			</label></li>
 			
 			<li><label>이름<br />
-			<input type="text" name="userName" id="name"  size="61" required/>
+			<input type="text" name="bsUserName" id="name"  size="61" required/>
 			</label></li>	
 			
 			<li><label>이메일<br />
@@ -52,20 +56,6 @@
 			</li>
 			
 			
-			<li><label>회원타입</label><br />
-			<input type="radio" name="userType" value="1" onclick="showForm(1);"/><label id="type"  onclick="showForm(1);">일반회원</label> 
-			<input type="radio" name="userType" value="2" onclick="showForm(2);"/><label id="type" onclick="showForm(2);" >사업자회원</label>
-			<input type="radio" name="userType" value="3" onclick="showForm(3);"/><label id="type" onclick="showForm(3);">관리자</label>
-			</li>
-			
-			<div id="bs">
-			<li><label>사업장 번호<br />
-			<input type="text" name="bsNo" id="no" size="61" required />
-			</label></li>
-			<li><label>사업장 명<br />
-			<input type="text" name="bsName" id="name" size="61" required />
-			</label></li>
-			</div>
 			
 			
 			<li><button type="button" onclick="sendInsert();">가입하기</button> <br />
@@ -84,7 +74,7 @@
 					$('#insertMemberForm').submit();
 				}
 			}
-			$(".guide").hide();
+			
 			/* 아이디 중복검사 이벤트 추가 */
 			$("#userId_").on("keyup", function(){
 		        var userId = $(this).val().trim();
@@ -145,18 +135,8 @@
 			
 			return true;
 		}
-		
-		function showForm(no){
-			if( no == 1) {
-				$("#bs").hide();                            // 나타내기. 영역도 같이 지움.
-			} else if (no == 2) {
-			    $("#bs").show();                            // 나타내기. 영역도 같이 나타남.
-			} else if (no == 3) {
-				$("#bs").hide();                            // 나타내기. 영역도 같이 지움.
-			}
-		}
-		
-		$("#bs").hide();  
+			
+			
 			
 	</script>
 	

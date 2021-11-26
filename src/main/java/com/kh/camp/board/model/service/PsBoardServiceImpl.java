@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.camp.board.model.dao.PsBoardDAO;
 import com.kh.camp.board.model.vo.Attachment;
 import com.kh.camp.board.model.vo.PsBoard;
-import com.kh.camp.exception.BoardException;
+
 
 @Service
 public class PsBoardServiceImpl implements PsBoardService {
@@ -78,21 +78,7 @@ public class PsBoardServiceImpl implements PsBoardService {
 		
 		totalResult = psboardDAO.updateBoard(psboard); // DAO이동
 		
-		if(totalResult == 0 ) throw new BoardException("수정이 불가능합니다");
 		
-		if(originList.size() > 0) {		
-			// 기존의 파일이 DB에 있다면
-	       totalResult = psboardDAO.deleteAttachment(psboard.getNNo());
-	       if(totalResult == 0 ) throw new BoardException("첨부파일 삭제가 불가능합니다");
-		}
-		
-		if( attachList.size() > 0) {
-			for(Attachment a : attachList) {
-				totalResult = psboardDAO.updateAttachment(a);
-				
-				if(totalResult == 0) throw new BoardException("게시글 첨부파일 수정 실패");
-			}
-		}
 				
 				return totalResult;
 	}

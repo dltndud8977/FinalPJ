@@ -22,8 +22,6 @@ public class Member {
 	private String userName;
 	private String userStatus;
 	private String bsNo;
-	private String bsStatus;
-	private Date bsEndDate;
 	private String bsName;
 
 	

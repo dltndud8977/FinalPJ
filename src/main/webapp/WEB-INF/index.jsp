@@ -1,12 +1,13 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 	<meta charset="UTF-8" />
  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/favicon.ico" />
     <title>CampGo! CampGo!</title>
 	
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
@@ -35,13 +36,13 @@
     </div>
     
     <div class="content">
-        <h3>adventure is worthwhile</h3>
-        <p>이곳에 quick reserve 추가</p>
-        <a href="#" class="btn">discover more</a>
+        <h3 style="width:589px;">Campping Is</h3> <br /><br /><h3>  Worthwhile</h3>
+        <br /><br /><br />
+        <a href="${pageContext.request.contextPath }/reserve/reserveList.do" class="btn">캠핑장 찾기</a>
     </div>
     </section>
     
-    <!-- Reserve section starts  -->
+    <!-- Reserve section starts  
 
 	<section class="reserve" id="reserve">
 
@@ -84,6 +85,7 @@
         </div>
     
     </section>
+    -->
     
     <!-- Camp section starts  -->
 
@@ -260,7 +262,7 @@
 
 
 
-<!-- contact section starts  -->
+<!-- contact section starts  
 
 <section class="contact" id="contact">
     
@@ -296,6 +298,7 @@
     </div>
     
 </section>
+-->Z
 
 
 	</div>
@@ -303,6 +306,7 @@
 	<c:import url="views/common/footer.jsp"/>
 	
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	
 	
 	<!-- custom js file link  -->
 	<script src="/camp/resources/js/script.js"></script>

@@ -28,26 +28,28 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int updateMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.update("memberSQL.updateMember", member);
 	}
 
 	@Override
 	public int deleteMember(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete("memberSQL.deleteMember", userId);
 	}
 
 	@Override
 	public int checkIdDuplicate(HashMap<String, Object> hmap) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		sqlSession.selectOne("memberSQL.checkIdDuplicate", hmap);
+		
+		return (Integer)hmap.get("result");
 	}
 
 	@Override
 	public int checkIdDuplicate(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return sqlSession.selectOne("memberSQL.checkIdDuplicate", userId);
 	}
 	
 	@Override

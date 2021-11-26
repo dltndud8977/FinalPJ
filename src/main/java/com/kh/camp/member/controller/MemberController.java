@@ -1,11 +1,15 @@
 package com.kh.camp.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -32,7 +36,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/memberEnrollEnd.do")
-	public String memberEnrollEnd(Member m, Model model) {
+	public String memberEnrollEnd(Member m, Model model, SessionStatus status) {
 		
 		System.out.println("받아온 정보 확인 : " + m);
 		
@@ -52,6 +56,9 @@ public class MemberController {
 		
 		if(result > 0) {
 			msg = "회원가입 완료!";
+			if ( ! status.isComplete() ) {
+				status.setComplete();			
+			}
 		} else {
 			msg = "회원가입 실패!";
 		}
@@ -116,5 +123,67 @@ public class MemberController {
 		
 		return "redirect:/";
 	
+	}
+	
+	@RequestMapping("/member/memberUpdate.do")
+	public String memberUpdate(Member member, Model model) {
+		
+		int result = memberService.updateMember(member);
+		
+		String loc = "/";
+		String msg = "";
+		
+		if(result > 0) {
+			
+			msg = "회원 정보 수정 완료!";
+			model.addAttribute("member", member);
+		} else {
+			
+			msg = "회원 정보 수정 실패!";
+		}
+		
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return "common/msg";
+	}
+	
+	@RequestMapping("/member/memberDelete.do")
+	public String memberDelete(Member member, SessionStatus status, Model model) {
+		
+		int result = memberService.deleteMember(member.getUserId());
+		
+		String loc = "/";
+		String msg = "";
+		
+		if(result > 0) {
+			
+			msg = "회원 탈퇴 완료!";
+			status.setComplete();
+		} else {
+			msg = "회원 탈퇴 실패!";
+		}
+		
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return "common/msg";
+	}
+	
+	@RequestMapping("/member/checkIdDuplicate.do")
+	@ResponseBody
+	public Map<String, Object> checkIdDuplicate(@RequestParam String userId){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int check = memberService.checkIdDuplicate(userId);
+		
+		if( check == 0 ) {
+			map.put("isUsable", true);
+		} else {
+			map.put("isUsable", false);
+		}
+		
+		return map;
 	}
 }
