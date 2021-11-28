@@ -19,9 +19,10 @@
 		#attach1{width:1200px; margin-left:14%; }
 		#attselect1{width:1140px; margin-left:-250%; }
 		#attach2{width:1200px; margin-left:14%; }
-		#attselect2{width:1140px; margin-left:-288%; }
+		#attselect2{width:1140px; margin-left:-304%; }
 		#ncontent{margin-left:10.5%;}
 		#comple{margin-left:82.9%;}
+		
 	</style>
 	<script>
 	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
@@ -77,11 +78,11 @@
 		<div id="board-container">
 			<form name="boardFrm" action="${pageContext.request.contextPath}/qnaboard/qnaBoardUpdate.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
 				<input type="hidden" name="askNo" value="${ qnaboard.askNo }" />
-				<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaboard.askTitle}" required>
-				<input type="text" class="form-control" name="userId" value="${qnaboard.userId}" readonly required>
+				<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaboard.askTitle}" style="margin-left:0.6%; width:1195px;" required>
+				<input type="text" class="form-control" name="userId" style="margin-left:0.6%;  width:1195px;" value="${qnaboard.userId}" readonly required>
 				<div class="checkout__input">
 										<div class="form-group">
-										<label id="exampleSelect" class="input-group-text">카테고리</label>
+										<label id="exampleSelect"style="margin-left:0.6%;  width:1195px;"  class="input-group-text">카테고리</label>
 											<select id="exampleSelect1" name="askCategory" class="custom-file-label">
 												<option value="-" selected="selected">선택하세요
 												<option value="1">문의사항

@@ -8,17 +8,23 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,18 +32,20 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.camp.board.model.vo.Attachment;
 import com.kh.camp.board.model.vo.PsBoard;
-
 import com.kh.camp.common.Utils;
 import com.kh.camp.qnaboard.model.service.qnaBoardService;
 import com.kh.camp.qnaboard.model.vo.qnaBoard;
 
+
 @Controller
+ 
 public class qnaBoardController {
-		
+	
+	
+	
 	@Autowired
 	qnaBoardService qnaBoardService;
-	
-
+ 
 	
 	// 조회
 	@RequestMapping("/qnaboard/qnaBoardList.do")
@@ -60,6 +68,8 @@ public class qnaBoardController {
 	model.addAttribute("totalContents", totalContents);
 	model.addAttribute("numPerPage", numPerPage);
 	model.addAttribute("pageBar", pageBar);
+	
+
 	
 	return "qnaboard/qnaBoardList";
  }			
@@ -145,8 +155,7 @@ public class qnaBoardController {
 		
 		model.addAttribute("qnaBoard", qnaboard);
 		model.addAttribute("attachmentList", attachmentList);
-		
-		
+	 
 		
 		return "qnaboard/qnaBoardView";
 	}		
@@ -351,7 +360,7 @@ public class qnaBoardController {
 		return "common/msg";
 	}
 	
-
+	
 	
 }
 	

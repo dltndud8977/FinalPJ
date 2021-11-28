@@ -19,7 +19,9 @@
 		 
 	</style>
 	<script>
-		
+	
+	
+	
 		function fileDownload(oldName, newName){
 			//한글파일명이 있을 수 있으므로,   명시적으로 encoding
 			oldName = encodeURIComponent(oldName);
@@ -32,12 +34,16 @@
 		<c:import url="../common/header.jsp"/>
 		<div id="board-container">
 		<a href="/camp/board/PsBoardList.do"   class="text1" style="font-size:40px; text-decoration: none; color:black;" >CampGo!</a>
-		<p>제목:
-			<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaBoard.askTitle }" required>
-		</p>
-		<p>아이디:	
-			<input type="text" class="form-control" name="userId" value="${qnaBoard.userId}" readonly required>
-		</p>
+		<div class="input-group-prepend" style="padding:0px;">
+				    <span class="input-group-text" style="width:200px; background-color:white; height:24px;">제목</span>
+			<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaBoard.askTitle }" style="margin-left:-13%;" readonly required>
+			</span>
+		  </div>
+		 <div class="input-group-prepend" style="padding:0px;">
+				    <span class="input-group-text" style="width:200px; background-color:white; height:24px;">작성자</span>	
+			<input type="text" class="form-control" name="userId" value="${qnaBoard.userId}" style="margin-left:-11.7%;" readonly required>
+			</span>
+		  </div>
 			<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 				<button type="button" 
 						class="btn btn-outline-success btn-block"
@@ -45,34 +51,22 @@
 					첨부파일${vs.count} - ${a.oldName }
 				</button>
 			</c:forEach>
-			<p>제목:
+			<div class="input-group-prepend" style="padding:0px;">
+				    <span class="input-group-text" style="width:200px; background-color:white; height:300px; text-align:center;">내용</span>
 		    <textarea class="form-control" name="askContent" placeholder="내용" rows=18; required>${qnaBoard.askContent }</textarea>
-		    </p>
-		    <br>
-		    
+		    </span>
+		 	 </div>
+		    <br>	
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/qnaBoardList.do'">리스트로</button>
 		    <c:if test="${member.userId eq qnaBoard.userId}">
 		    &nbsp;
 			<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/qnaBoardUpdateView.do?askNo=${qnaBoard.askNo}'">수정 페이지</button>
-			</c:if>
-			
-			
+			</c:if>						
 		</div>
-		
-		<!-- Comments Form -->
-	<div class="card my-4">
-		<h5 class="card-header">Leave a Comment:</h5>
-		<div class="card-body">
-			<form name="comment-form" action="/comment/comment/comwrite" method="post" autocomplete="off">
-				<div class="form-group">
-					<input type="hidden" name="comNo" th:value="*{comNo}" />
-					<textarea name="comContent" class="form-control" rows="3"></textarea>
-				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-		</div>
-	</div>
 		<c:import url="../common/footer.jsp"/>
 	</div>
+	
+
+	
 </body>
 </html>

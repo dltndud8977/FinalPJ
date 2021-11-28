@@ -21,7 +21,7 @@
 		#attach2{width:1200px; margin-left:0%; margin-top:-1.7%; }
 		#attselect2{width:1140px; margin-left:5%; margin-top:-2%; }
 		#ncontent{margin-left:10.5%;}
-		#comple{margin-left:82.3%;}
+		#comple{margin-left:90.3%;}
 		#exampleSelect1{ margin-left : 15%; margin-top: 0%;}	
   		#exampleSelect{ width:30%;  margin-top: 3%; margin-left: -3.8%;}
 	</style>
@@ -103,7 +103,9 @@
 											</select>
 										</div>
 									</div>
-								</div>				<c:forEach items="${attachmentList}" var="a" varStatus="vs">
+								</div>				
+								
+								<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 					<div class="rows">
 						<button type="button" class="btn btn-outline-success col-8"
 							onclick="fileDownload('${a.originalFileName}','${a.renamedFileName }');" download>

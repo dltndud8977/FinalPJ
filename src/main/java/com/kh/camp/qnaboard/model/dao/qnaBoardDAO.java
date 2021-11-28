@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.camp.board.model.vo.Attachment;
 import com.kh.camp.board.model.vo.PsBoard;
+
 import com.kh.camp.qnaboard.model.vo.qnaBoard;
 
 public interface qnaBoardDAO {
@@ -31,5 +32,6 @@ public interface qnaBoardDAO {
 	int deleteAttachment(int askNo);
 
 	int deleteFile(int askNo);
-
+	
+	
 }
