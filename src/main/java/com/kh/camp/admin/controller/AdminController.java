@@ -143,11 +143,5 @@ public class AdminController {
 		
 		return "admin/adminPage";
 	}
-	
-	
-	
-<<<<<<< HEAD
-=======
-	
->>>>>>> refs/remotes/origin/master
+
 }
