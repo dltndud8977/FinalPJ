@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.camp.admin.model.dao.AdminDAO;
+import com.kh.camp.admin.model.vo.Visit;
 import com.kh.camp.member.model.vo.Member;
 
 @Service
@@ -53,6 +54,13 @@ public class AdminService {
 		
 		return admindao.expire(m);
 	}
+
+	public List<Visit> visit() {
+		
+		return admindao.visit();
+	}
+	
+	
 
 	
 

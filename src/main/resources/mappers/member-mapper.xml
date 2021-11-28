@@ -4,9 +4,9 @@
 <mapper namespace="memberSQL">
 	
 	
-
+	<!-- 각자 다들 데이터베이스에 맞게 수정하기 -->
 	<insert id="insertMember" parameterType="Member">
-		INSERT INTO MEMBER VALUES( #{userId} , #{userPw} , #{userType},  #{phone},
+		INSERT INTO MEMBER VALUES( #{userId} , #{userPw} ,#{userType},  #{phone},
 									#{email}, #{userName}, DEFAULT)
 	</insert>
 	
@@ -15,5 +15,13 @@
 	<select id="selectOne" parameterType="string" resultType="Member">
 		SELECT * FROM MEMBER WHERE USERID = #{ userId }	
 	</select>
+	
+	<update id="visitCount">
+      UPDATE VISIT SET VISITCOUNT = VISITCOUNT + 1 WHERE VISITDATE=SUBSTR(SYSDATE,1,5)
+   </update>
+   
+   <insert id="visitInsert">
+      INSERT INTO VISIT VALUES(SUBSTR(SYSDATE,1,5),1,0)
+   </insert>
 	
 </mapper>

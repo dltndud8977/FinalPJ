@@ -1,6 +1,5 @@
 package com.kh.camp.admin.model.dao;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.camp.admin.model.vo.Visit;
 import com.kh.camp.member.model.vo.Member;
 
 @Repository
@@ -55,5 +55,11 @@ public class AdminDAO {
 		
 		return sqlSession.update("adminSQL.expire",m);
 	}
+	public List<Visit> visit() {
+		
+		return sqlSession.selectList("adminSQL.visit");
+	}
 
+	
+	
 }

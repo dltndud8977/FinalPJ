@@ -12,10 +12,11 @@
 <script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	
 	<style>
-		div#board-container{width:400px; margin:0 auto; text-align:center;}
+		div#board-container{width:1200px; margin:0 auto; text-align:center; margin-top:8%;}
 		div#board-container input,div#board-container button{margin-bottom:15px;}
 		/* 부트스트랩 : 파일라벨명 정렬*/
 		div#board-container label.custom-file-label{text-align:left;}
+		 
 	</style>
 	<script>
 		
@@ -28,11 +29,15 @@
 </head>
 <body>
 	<div id="container">
-		
+		<c:import url="../common/header.jsp"/>
 		<div id="board-container">
+		<a href="/camp/board/PsBoardList.do"   class="text1" style="font-size:40px; text-decoration: none; color:black;" >CampGo!</a>
+		<p>제목:
 			<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaBoard.askTitle }" required>
+		</p>
+		<p>아이디:	
 			<input type="text" class="form-control" name="userId" value="${qnaBoard.userId}" readonly required>
-		
+		</p>
 			<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 				<button type="button" 
 						class="btn btn-outline-success btn-block"
@@ -40,7 +45,9 @@
 					첨부파일${vs.count} - ${a.oldName }
 				</button>
 			</c:forEach>
-		    <textarea class="form-control" name="askContent" placeholder="내용" required>${qnaBoard.askContent }</textarea>
+			<p>제목:
+		    <textarea class="form-control" name="askContent" placeholder="내용" rows=18; required>${qnaBoard.askContent }</textarea>
+		    </p>
 		    <br>
 		    
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/qnaboard/qnaBoardList.do'">리스트로</button>
@@ -52,11 +59,19 @@
 			
 		</div>
 		
-		<div id="reply-board-container">
-		<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaBoard.askTitle }" readonly required>
-		<input type="hidden" class="form-control" name="answerId" value="${member.userType==3 }" readonly required>
-		 <textarea class="form-control" name="answerContent" placeholder="내용" required>${qnaBoard.answerContent }</textarea>
+		<!-- Comments Form -->
+	<div class="card my-4">
+		<h5 class="card-header">Leave a Comment:</h5>
+		<div class="card-body">
+			<form name="comment-form" action="/comment/comment/comwrite" method="post" autocomplete="off">
+				<div class="form-group">
+					<input type="hidden" name="comNo" th:value="*{comNo}" />
+					<textarea name="comContent" class="form-control" rows="3"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
 		</div>
+	</div>
 		<c:import url="../common/footer.jsp"/>
 	</div>
 </body>

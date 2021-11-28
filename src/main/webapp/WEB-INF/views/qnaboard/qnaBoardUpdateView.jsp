@@ -8,12 +8,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>게시글 수정</title>
-	
-	<style>
-		div#board-container{width:400px; margin:0 auto; text-align:center;}
-		div#board-container input{margin-bottom:15px;}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		<style>
+			div#board-container{width:1200px; margin:0 auto; text-align:center; margin-top:8%;}
+		div#board-container input,div#board-container button{margin-bottom:15px;}
 		/* 부트스트랩 : 파일라벨명 정렬*/
 		div#board-container label.custom-file-label{text-align:left;}
+		#askcontent{width:1200px; margin-left:11%; }
+		#attach1{width:1200px; margin-left:14%; }
+		#attselect1{width:1140px; margin-left:-250%; }
+		#attach2{width:1200px; margin-left:14%; }
+		#attselect2{width:1140px; margin-left:-288%; }
+		#ncontent{margin-left:10.5%;}
+		#comple{margin-left:82.9%;}
 	</style>
 	<script>
 	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
@@ -65,12 +73,24 @@
 </head>
 <body>
 	<div id="container">
-	
+	<c:import url="../common/header.jsp"/>
 		<div id="board-container">
 			<form name="boardFrm" action="${pageContext.request.contextPath}/qnaboard/qnaBoardUpdate.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
 				<input type="hidden" name="askNo" value="${ qnaboard.askNo }" />
 				<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" value="${qnaboard.askTitle}" required>
 				<input type="text" class="form-control" name="userId" value="${qnaboard.userId}" readonly required>
+				<div class="checkout__input">
+										<div class="form-group">
+										<label id="exampleSelect" class="input-group-text">카테고리</label>
+											<select id="exampleSelect1" name="askCategory" class="custom-file-label">
+												<option value="-" selected="selected">선택하세요
+												<option value="1">문의사항
+												<option value="2">사업자 등록
+											    
+											</select>
+										</div>
+									</div>
+								</div>
 				<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 					<div class="rows">
 						<button type="button" class="btn btn-outline-success col-8"
@@ -84,25 +104,25 @@
 				<br>
 				<div class="input-group mb-3" style="padding:0px;">
 				  <div class="input-group-prepend" style="padding:0px;">
-				    <span class="input-group-text">첨부파일1</span>
+				    <span class="input-group-text"id="attach1">첨부파일1</span>
 				  </div>
 				  <div class="custom-file">
 				    <input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple>
-				    <label class="custom-file-label" for="upFile1">파일을  선택하세요</label>
+				    <label class="custom-file-label" for="upFile1" id="attselect2">파일을  선택하세요</label>
 				  </div>
 				</div>
 				<div class="input-group mb-3" style="padding:0px;">
 				  <div class="input-group-prepend" style="padding:0px;">
-				    <span class="input-group-text">첨부파일2</span>
+				    <span class="input-group-text" id="attach2">첨부파일2</span>
 				  </div>
 				  <div class="custom-file">
 				    <input type="file" class="custom-file-input" name="upFile" id="upFile2">
-				    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
+				    <label class="custom-file-label" for="upFile2" id="attselect2">파일을 선택하세요</label>
 				  </div>
 				</div>
-			    <textarea class="form-control" name="askContent" placeholder="내용" required>${qnaboard.askContent}</textarea>
+			    <textarea class="form-control" id="askcontent" name="askContent" placeholder="내용" rows=20; required>${qnaboard.askContent}</textarea>
 				<br />
-				<input type="submit" class="btn btn-outline-success" value="수정 완료" /> &nbsp;
+				<input type="submit" class="btn btn-outline-success" id="comple"value="수정 완료" /> &nbsp;
 				<input type="button" class="btn btn-outline-danger" value="삭제" onclick="location.href='${pageContext.request.contextPath}/qnaboard/boardDelete.do?askNo=${qnaboard.askNo}'"/>
 			</form>
 		</div>

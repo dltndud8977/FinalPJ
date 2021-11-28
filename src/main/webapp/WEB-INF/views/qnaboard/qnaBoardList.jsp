@@ -24,12 +24,29 @@
 				location.href = "${pageContext.request.contextPath}/qnaboard/qnaBoardView.do?askNo="+askNo;
 			});
 		});
-	</script>
+		
+		
 	
+	</script>
+	<style>
+  
+  	
+  	#board-container{
+  		
+  		 position : relative;
+  		margin-left: -15%;
+  		margin-top: 10%;
+  		width : 130%;
+ 		
+  	}
+  	
+ 
+  	
+  </style>
 	</head>
 <body>
 	<div class="container">
-
+ 	<c:import url="../common/header.jsp"/>
 	   	  <section id ="board-container">
 	     	 <div class="tableArea">
 	    
@@ -60,9 +77,23 @@
                      </tr>
                 </c:forEach>
             </table>
+             <div>
+ 						<form name="search-form" autocomplete="off">
+ 								<select name="type">
+ 									<option selceted value="">검색 내용 선택</option>
+ 									<option vlaue="askTitle">제목</option>
+ 									<option vlaue="askContent">내용</option>
+ 									<option vlaue="userId">작성자</option>
+ 								</select>
+ 								<input type="text" name="keyword" value=""></input>
+ 								<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
+ 						</form>	
+ 					</div>
 	      <c:out value="${pageBar}" escapeXml="false"/>
 	    </section>
 	 <c:import url="../common/footer.jsp"/>
+ 	
+ 
  </div>
 </body>
 </html>

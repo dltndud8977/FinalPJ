@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<footer>
-		<p>&lt;Copyright 2021. <strong>5Team Final Project</strong>. All rights reserved.&gt;</p>
-</footer>
+<link rel="stylesheet" href="/camp/resources/css/footer.css" />
+
+<section class="footer">
+
+    <h1 class="credit"> created by <span> 5Team CampGo! CampGo! </span> | all rights reserved! </h1>
+
+</section>

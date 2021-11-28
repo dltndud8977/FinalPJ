@@ -21,6 +21,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member selectOneMember(String userId) {
 		
+		memberDAO.visitCount();
+		
 		return memberDAO.selectOneMember(userId);
 	}
 
@@ -41,5 +43,7 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
 
 }

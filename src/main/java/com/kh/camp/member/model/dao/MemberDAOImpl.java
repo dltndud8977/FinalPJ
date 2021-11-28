@@ -49,5 +49,16 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	   public int visitCount() {
+	      int result =sqlSession.update("memberSQL.visitCount");
+	      
+	      if(result == 0) {
+	         return sqlSession.insert("memberSQL.visitInsert");
+	      } else {
+	       return result;
+	      }
+	   }
 
 }
