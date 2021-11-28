@@ -5,6 +5,9 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/enroll.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<script src="/camp/resources/js/script.js"></script>
+
 
 <!--  header section -->
 	<header>
@@ -14,19 +17,16 @@
 		<a href="/camp/" class="logo"><img src="${pageContext.request.contextPath}/resources/images/shadowlogo.png" alt="logo" "/></a>
 		
 		<nav class="navbar" style="margin-left: 15%;">
-        <a href="${pageContext.request.contextPath }">home</a>
+        <a href="${pageContext.request.contextPath }">Home</a>
         
-         <a href="${pageContext.request.contextPath }/reserve/reserveList.do">camp</a>
+         <a href="${pageContext.request.contextPath }/reserve/reserveList.do">Camp</a>
 
         <a href="/camp/board/PsBoardList.do">review</a>
-        <a href="${pageContext.request.contextPath }/weather/weatherView.do">weather&traffic</a>
+        <a href="${pageContext.request.contextPath }/weather/weatherView.do">Weather&Traffic</a>
         <a href="#contact">contact</a>
         
        <c:if test="${!empty member}">
-       <a href="${pageContext.request.contextPath }/reserve/goCheck.do?userId=${member.userId}">myReservation</a>
-	   <div class="icons">
-	        <i class="fas fa-user" id="memberView-btn" style="color:blue;"></i>
-	    </div>
+       <a href="${pageContext.request.contextPath }/reserve/goCheck.do?userId=${member.userId}">MyReservation</a>
       </c:if>
       
          <c:if test="${member.userType==3}">
@@ -36,22 +36,22 @@
         
     	</nav>
     	
+    	<c:if test="${!empty member}">
+		   <div class="icons">
+		        <i class="fas fa-user" id="memberView-btn" style="color:#1C3145;"></i>
+		    </div>
+	    </c:if>
+    	
     	<c:if test="${empty member}">
-	    <div class="icons">
-	        <i class="fas fa-user" id="login-btn"></i>
-	    </div>
+		    <div class="icons">
+		        <i class="fas fa-user" id="login-btn"></i>
+		    </div>
 	    </c:if>
     
-    <!-- 회원정보수정 아이콘 
-    <c:if test="${!empty member }">
-    <div class="icons">
-        <i class="fas login-user" id="memberupdate-btn"></i>
-    </div>
-    
-    -->
+ 
     
    
-    </c:if>
+   
     
     
    <!-- login form container  -->
@@ -69,14 +69,13 @@
 	        <p>forget password? <a href="#">click here</a></p>
 	        <p>don't have and account? <a href="/camp/member/memberEnroll.do">회원가입</a></p>
 	    </form>
-	    
-
-			
-			
-			
-		
 	
 	</c:if>
+	
+	<!-- pwFind form contatiner -->
+	
+	
+	
 	
 	<!-- memberView 페이지 -->
 	<c:if test="${!empty member}">
@@ -104,7 +103,7 @@
 			<br />
 			<input type="button" class="btn btn-outline-success" id="btn" onclick="location.href='${pageContext.request.contextPath}/member/memberLogout.do'" value="로그아웃">&nbsp;
 			<input type="submit" class="btn btn-outline-success" id="btn" value="수정" >&nbsp;
-			<input type="reset" class="btn btn-outline-success" id="btn" value="취소">&nbsp;
+			<input type="reset" class="btn btn-outline-success" id="btn" value="리셋">&nbsp;
 			<input type="button" class="btn btn-outline-success" id="btn" onclick="location.href='${pageContext.request.contextPath}/member/memberDelete.do'" value="탈퇴">
 		</form>
 	</div>
@@ -122,5 +121,7 @@
 	    
 		
 	</header>
+	
+	
 	
 	

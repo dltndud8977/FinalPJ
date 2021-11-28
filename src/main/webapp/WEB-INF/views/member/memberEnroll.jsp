@@ -23,9 +23,9 @@
 			<div id="userId-container" style="margin-top : 0;">
 			<input type="text" name="userId" id="userId_" size="61" required style="display:block;"/>
 			<!-- 아이디중복검사 코멘트추가 -->
-				<span class="guide ok">사용 가능</span>
- 	          	<span class="guide error">사용 불가</span>
-				<span class="guide invalid"> 4글자 미만</span>
+				<span class="guide ok" style="color : green;">사용 가능</span>
+ 	          	<span class="guide error" style="color: red;">사용 불가</span>
+				<span class="guide invalid" style="color: red;"> 4글자 미만</span>
 			<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0"/>
 			</div>
 			</label></li>
@@ -69,7 +69,7 @@
 			
 			
 			<li><button type="button" onclick="sendInsert();">가입하기</button> <br />
-			<button type="reset">취소</button></li>
+			<a href="${pageContext.request.contextPath}" style="text-decoration : none;"><button type="reset" >취소</button></a></li>
 			
 		</ul>
 	</form>
@@ -128,6 +128,7 @@
 		     //console.log(userId);
 			});
 		
+	
 		
 		function validate(){
 			var userId = $("#userId_");

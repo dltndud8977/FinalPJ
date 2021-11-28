@@ -10,7 +10,7 @@ body{
 }
 
 div{
-	width : 460px;
+	
 	margin : 30px auto;
 
 }
@@ -37,18 +37,32 @@ button{
 	color:white;
 	border : 0px solid #B0C4DE;	
 	padding : 10px;
-	width: -webkit-fill-available;
-	
+	width: 468px;
+	border : 1px solid #B0C4DE;
 }
-	
+
+button:hover{
+	cursor:pointer;
+	background:rgba(201, 203, 202, 0);
+  	color:#1C3145;
+  	
+}
 
 
 input{
 	height : 40px;
+	border : 1px solid #B0C4DE;
+	padding-left : 10px;
+}
+
+input:hover{
+	border-radius : 1rem;
+	box-shadow: 0 1rem 2rem rgba(135,206,235,.5);
 }
 
 form{
 	text-align: left;
+	margin-left : 38%;
 }
 
 #btn-security{
