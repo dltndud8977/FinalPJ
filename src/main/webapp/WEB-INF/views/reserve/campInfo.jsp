@@ -34,6 +34,7 @@
 		width: 720px;
 		
 	}
+
    .reservationbtn{
       margin-left : 300px;
       background-color : rgba(176, 196, 222,.7);
@@ -51,6 +52,7 @@
         color:#1C3145;
 
    }
+
 
 	.imgdiv{
 		object-fit: cover;
@@ -227,5 +229,8 @@ span.next {
 	
 </div>
  <c:import url="../common/footer.jsp"/>
+ 
+ <!-- custom js file link  -->
+	<script src="/camp/resources/js/script.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/enroll.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<script src="/camp/resources/js/script.js"></script>
+
 
 
 <!--  header section -->
@@ -21,9 +21,9 @@
         
          <a href="${pageContext.request.contextPath }/reserve/reserveList.do">Camp</a>
 
-        <a href="/camp/board/PsBoardList.do">review</a>
+        <a href="/camp/board/PsBoardList.do">Review</a>
         <a href="${pageContext.request.contextPath }/weather/weatherView.do">Weather&Traffic</a>
-        <a href="#contact">contact</a>
+        <a href="">Contact</a>
         
        <c:if test="${!empty member}">
        <a href="${pageContext.request.contextPath }/reserve/goCheck.do?userId=${member.userId}">MyReservation</a>
@@ -37,13 +37,13 @@
     	</nav>
     	
     	<c:if test="${!empty member}">
-		   <div class="icons">
+		   <div class="icons" id="lsy">
 		        <i class="fas fa-user" id="memberView-btn" style="color:#1C3145;"></i>
 		    </div>
 	    </c:if>
     	
     	<c:if test="${empty member}">
-		    <div class="icons">
+		    <div class="icons" id="lsy">
 		        <i class="fas fa-user" id="login-btn"></i>
 		    </div>
 	    </c:if>
@@ -57,7 +57,7 @@
    <!-- login form container  -->
 
 <c:if test="${empty member}">
-	<div class="login-form-container">
+	<div class="login-form-container" id="lsy">
 	
 		<i class="fas fa-times" id="form-close"></i>
 		
@@ -79,7 +79,7 @@
 	
 	<!-- memberView 페이지 -->
 	<c:if test="${!empty member}">
-	<div class="memberView-form-container">
+	<div class="memberView-form-container" id="lsy">
 	
 		<i class="fas fa-times" id="form-close"></i>
 		<div id="update-container">

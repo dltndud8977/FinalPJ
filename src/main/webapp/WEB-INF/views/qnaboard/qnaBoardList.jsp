@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+\<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -24,19 +24,37 @@
 				location.href = "${pageContext.request.contextPath}/qnaboard/qnaBoardView.do?askNo="+askNo;
 			});
 		});
-	</script>
+		
+		
 	
+	</script>
+	<style>
+  
+  	
+  	#board-container{
+  		
+  		 position : relative;
+  		margin-left: -15%;
+  		margin-top: 10%;
+  		width : 130%;
+ 		
+  	}
+  	
+ 
+  	
+  </style>
 	</head>
 <body>
 	<div class="container">
-
+ 	<c:import url="../common/header.jsp"/>
 	   	  <section id ="board-container">
 	     	 <div class="tableArea">
-	      
+	    
 	     	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="fn_goBoardForm()";/>
                   <table id="listArea" class="table table-striped table-hover">
                      <tr>
                         <th>번호</th>
+                        <th>문의유형</th>
                         <th>제목</th>               
                         <th>내용</th>               
                         <th>작성일</th>                            
@@ -45,9 +63,10 @@
                         <c:forEach items = "${list}" var="qna">
                            <tr id="${qna.askNo}">
                               <td>${qna.askNo}</td>
+                                <td>${qna.askCategory}</td>
                               <td>${qna.askTitle}</td>
                               <td>${qna.askContent} </td>
-                              <td>${qna.qnaDate}</td>
+                              <td>${qna.askDate}</td>
                               <td>${qna.userId}</td>
                               <td align="center">
                                     <c:if test="${qna.fileCount>0 }">
@@ -58,9 +77,23 @@
                      </tr>
                 </c:forEach>
             </table>
+             <div>
+ 						<form name="search-form" autocomplete="off">
+ 								<select name="type">
+ 									<option selceted value="">검색 내용 선택</option>
+ 									<option vlaue="askTitle">제목</option>
+ 									<option vlaue="askContent">내용</option>
+ 									<option vlaue="userId">작성자</option>
+ 								</select>
+ 								<input type="text" name="keyword" value=""></input>
+ 								<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
+ 						</form>	
+ 					</div>
 	      <c:out value="${pageBar}" escapeXml="false"/>
 	    </section>
 	 <c:import url="../common/footer.jsp"/>
+ 	
+ 
  </div>
 </body>
 </html>

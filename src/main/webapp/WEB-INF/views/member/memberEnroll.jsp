@@ -68,7 +68,7 @@
 			</div>
 			
 			
-			<li><button type="button" onclick="sendInsert();">가입하기</button> <br />
+			<li class="lsy"><button type="button" onclick="sendInsert();" >가입하기</button> <br />
 			<a href="${pageContext.request.contextPath}" style="text-decoration : none;"><button type="reset" >취소</button></a></li>
 			
 		</ul>

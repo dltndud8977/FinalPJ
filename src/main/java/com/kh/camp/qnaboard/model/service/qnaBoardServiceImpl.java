@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.camp.board.model.vo.Attachment;
 import com.kh.camp.exception.BoardException;
+//import com.kh.camp.exception.BoardException;
 import com.kh.camp.qnaboard.model.dao.qnaBoardDAO;
 import com.kh.camp.qnaboard.model.vo.qnaBoard;
 
@@ -69,9 +70,10 @@ public class qnaBoardServiceImpl implements qnaBoardService {
 
 	@Override
 	public int updateBoard(qnaBoard qnaboard, List<Attachment> attachList) {
-int totalResult = 0;
 		
-		List<Attachment> originList = qnaboardDAO.selectAttachmentList(qnaboard.getAskno());
+		int totalResult = 0;
+		
+		List<Attachment> originList = qnaboardDAO.selectAttachmentList(qnaboard.getAskNo());
 		
 		totalResult = qnaboardDAO.updateBoard(qnaboard); // DAO이동
 		
@@ -79,7 +81,7 @@ int totalResult = 0;
 		
 		if(originList.size() > 0) {		
 			// 기존의 파일이 DB에 있다면
-	       totalResult = qnaboardDAO.deleteAttachment(qnaboard.getAskno());
+	       totalResult = qnaboardDAO.deleteAttachment(qnaboard.getAskNo());
 	       if(totalResult == 0 ) throw new BoardException("첨부파일 삭제가 불가능합니다");
 		}
 		

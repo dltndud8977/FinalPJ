@@ -24,6 +24,7 @@ formBtn2.addEventListener('click', () =>{
 });
 }
 
+if(swiper != undefined){
 var swiper = new Swiper(".review-slider", {
     spaceBetween: 20,
     loop:true,
@@ -32,6 +33,7 @@ var swiper = new Swiper(".review-slider", {
         disableOnInteraction: false,
     }
 });
+}
 
 if(memberViewForm != undefined) {
 formClose.addEventListener('click', () =>{

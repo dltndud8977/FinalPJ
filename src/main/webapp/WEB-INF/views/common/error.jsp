@@ -16,7 +16,7 @@ div#error-container{text-align:center;}
 </head>
 <body>
 	<div id="error-container">
-	
+
 		<h1>Error</h1>
 		<!-- exception객체는 el로 접근할 수 없음. -->
 		<%-- <h2>예외 발생: ${exception.message}</h2> --%>

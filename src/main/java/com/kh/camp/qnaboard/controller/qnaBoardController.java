@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.camp.board.model.vo.Attachment;
 import com.kh.camp.board.model.vo.PsBoard;
+
 import com.kh.camp.common.Utils;
 import com.kh.camp.qnaboard.model.service.qnaBoardService;
 import com.kh.camp.qnaboard.model.vo.qnaBoard;
@@ -34,6 +36,8 @@ public class qnaBoardController {
 		
 	@Autowired
 	qnaBoardService qnaBoardService;
+	
+
 	
 	// 조회
 	@RequestMapping("/qnaboard/qnaBoardList.do")
@@ -75,7 +79,7 @@ public class qnaBoardController {
 		String savePath = req.getServletContext().getRealPath("/resources/boardUpload");
 		List<Attachment> attachList = new ArrayList<Attachment>();
 		
-		System.out.println("qnaboard : " + qnaboard);
+		
 		
 		//업로드
 		
@@ -106,6 +110,8 @@ public class qnaBoardController {
 		
 		// DB 등록
 		int result = qnaBoardService.insertBoard(qnaboard, attachList);
+		
+		System.out.println("qnaboard : " + qnaboard);
 		String loc = "/qnaboard/qnaBoardList.do";
 		String msg = "";
 		
@@ -139,6 +145,8 @@ public class qnaBoardController {
 		
 		model.addAttribute("qnaBoard", qnaboard);
 		model.addAttribute("attachmentList", attachmentList);
+		
+		
 		
 		return "qnaboard/qnaBoardView";
 	}		
@@ -198,7 +206,7 @@ public class qnaBoardController {
 		}
 	}
 	
-	@RequestMapping("/qnaboard/qnaboardUpdateView.do")
+	@RequestMapping("/qnaboard/qnaBoardUpdateView.do")
 	public String boardUpdateView(@RequestParam int askNo, Model model) {
 		
 		qnaBoard qnaboard = qnaBoardService.updateView(askNo);
@@ -211,16 +219,17 @@ public class qnaBoardController {
 		return "qnaboard/qnaBoardUpdateView";		
 	}
 	
-	@RequestMapping("/qnaboard/qnaboardUpdate.do")
+	@RequestMapping("/qnaboard/qnaBoardUpdate.do")
 	public String boardUpdate(qnaBoard qnaboard, HttpServletRequest request, Model model, 
 							  @RequestParam(value="upFile", required=false) MultipartFile[] upFiles) {
+		
 		// 1. 원본 게시글 불러와 수정하기
-		int askNo = qnaboard.getAskno();
+		int askNo = qnaboard.getAskNo();
 		
 		qnaBoard originBoard = qnaBoardService.updateView(askNo);
 
-		originBoard.setAsktitle(qnaboard.getAsktitle());
-		originBoard.setAskcontent(qnaboard.getAskcontent());
+		originBoard.setAskNo(qnaboard.getAskNo());
+		originBoard.setAskTitle(qnaboard.getAskTitle());
 		 
 		
 		// 2. 첨부파일 수정하기
@@ -283,6 +292,7 @@ public class qnaBoardController {
 		model.addAttribute("loc", loc);	
 		model.addAttribute("msg", msg);
 		
+		
 		return "common/msg";
 	}
 	
@@ -340,6 +350,9 @@ public class qnaBoardController {
 		
 		return "common/msg";
 	}
+	
+
+	
 }
 	
 	

@@ -14,8 +14,7 @@
 	</select>
 	
 	<insert id="insertBoard" parameterType="QnaBoard">
-		INSERT INTO QNA(ASKNO, USERID, ASKTITLE, ASKCONTENT, ASKDATE, ASKCATEGORY, ASKBOARDFILE, ASKSTATUS,)
-		VALUES (SEQ_ASKNO.NEXTVAL, #{ userId }, #{ askTitle }, #{ askContent }, SYSDATE, #{ askCategory }, 'Y' )
+		INSERT INTO QNA	VALUES (SEQ_ASKNO.NEXTVAL, #{ userId }, #{ askTitle }, #{ askContent }, SYSDATE, #{askCategory}, #{ askBoardfile}, 'Y', null, null, null)
 	</insert>
 	
 	<select id="insertAttachment" parameterType="Attachment">
@@ -23,7 +22,7 @@
 	</select>
 	
 	<select id="selectOneBoard" parameterType="int" resultType="QnaBoard">
-		SELECT * FROM QNABOARD WHERE ASKNO = #{ askNo }
+		SELECT * FROM QNA WHERE ASKNO = #{ askNo }
 	</select>
 	
 	<select id="selectAttachmentList" parameterType="int" resultType="Attachment">
@@ -31,7 +30,7 @@
 	</select>
 	
 	<update id="updateBoard" parameterType="QnaBoard">
-		UPDATE QNABOARD SET ASKTITLE = #{ askTitle }, ASKCONTENT = #{ askContent }
+		UPDATE QNA SET ASKTITLE = #{ askTitle }, ASKCONTENT = #{ askContent }
 		WHERE ASKNO = #{ askNo }
 	</update>
 	
@@ -49,7 +48,7 @@
 	</delete>
 	
 	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM QNABOARD WHERE ASKNO = #{ askNo }
+		DELETE FROM QNA WHERE ASKNO = #{ askNo }
 	</delete>
 	<!-- Access to #{ field } -->
 </mapper>
