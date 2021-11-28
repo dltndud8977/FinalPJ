@@ -15,7 +15,7 @@
 	</select>
 	
 	<insert id="reservation" parameterType="Reservation">
-		INSERT INTO RESER_INFO VALUES(SEQ_RNO.NEXTVAL, #{ checkIn }, #{ checkOut }, #{ rStatus }, #{ userId }, #{ roomNo } )
+		INSERT INTO RESER_INFO VALUES(SEQ_RNO.NEXTVAL, #{ checkIn }, #{ checkOut }, 'Y', #{ userId }, #{ campName }, #{roomName} )
 	</insert>
 	
 	<select id="getBoard" parameterType="int" resultType="PsBoard">

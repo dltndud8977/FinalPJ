@@ -9,6 +9,8 @@
 <head>
 <meta charset="UTF-8">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
  <style>
         body{
           
@@ -23,41 +25,19 @@
         main{
             display:inline-table;
             position:absolute;
-            top : 10%;
+            top : 20%;
             left : 10%;
             align : center;
             
         } 
-        main ul li{
-        	margin-top : 100px;
-            list-style: none;
-            margin-bottom : 300px;
-            border: 1px solid black;
-            width: 300px;
-            height: fit-content;
-            font-size: 18pt;
-            font-weight: bold;
-            text-align: center;
-         
-            cursor:pointer; 
-            
-            
-        }
-      
-
-        #reservation {
-            background: rgba(176, 196, 222,.7);
-            color: black;
-        }
-        .text{
-        	margin-top : 50px;
+   
+    
+         .text{
        	    position: absolute;
             width: 800px;
             height: 700px;
-            top:5%;
-            left: 130%;
-             
-            
+            top:300%;
+                     
             font-size: 15pt;
             text-align: left;
             background: rgba(245, 243, 243, 0.979);
@@ -85,6 +65,10 @@
       	width:50px;
       	
       }
+      
+      .nav-tabs{
+      	position: block;
+      }
 			
     </style>
 <title>관리자 페이지</title>
@@ -94,25 +78,19 @@
 <c:import url="../common/header.jsp"/>
 
  <main>
-    <ul>
-      
-        <li id="reservation">
-            예약관리
-            
-          
-        </li>
-        <li id="member">
-            회원관리
-          
-            </li>
-            
-        <li id="bsMember">
-            사업자 관리
-         
-           
-        </li>
-       
-    </ul>
+ 
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath }/admin/reserManage.do">예약관리</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath }/admin/memberManage.do">일반회원관리</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath }/admin/bsMemberManage.do">사업자회원관리</a>
+  </li>
+ 
+</ul>
    
     <div class="text">
     	<canvas id="myChart"></canvas>
@@ -131,10 +109,12 @@
 			arrayVisit.push("${m.visitCount}");
 			arrayReserve.push("${m.reserCount}");
        </c:forEach>
+       
        var visitBack = [];
        var visitBorder = [];
        var reserveBack = [];
        var reserveBorder = [];
+       
        for(var i=0; i<arrayNames.length; i++){
        visitBack.push("rgba(255, 99, 132, 0.2)");
        visitBorder.push("rgb(255, 99, 132)");
