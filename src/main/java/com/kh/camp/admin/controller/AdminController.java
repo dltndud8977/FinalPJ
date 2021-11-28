@@ -146,4 +146,8 @@ public class AdminController {
 	
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> refs/remotes/origin/master
 }

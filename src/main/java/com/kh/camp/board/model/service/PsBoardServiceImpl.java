@@ -10,6 +10,7 @@ import com.kh.camp.board.model.dao.PsBoardDAO;
 import com.kh.camp.board.model.vo.Attachment;
 import com.kh.camp.board.model.vo.PsBoard;
 
+
 @Service
 public class PsBoardServiceImpl implements PsBoardService {
 	
@@ -29,10 +30,10 @@ public class PsBoardServiceImpl implements PsBoardService {
 	}
 
 	@Override
-	public int insertBoard(PsBoard board, List<Attachment> attachList) {
+	public int insertBoard(PsBoard psboard, List<Attachment> attachList) {
 		// TODO Auto-generated method stub
 		
-		int psBoardResult = psboardDAO.insertBoard(board);
+		int PsBoardResult = psboardDAO.insertBoard(psboard);
 		// dao로 가장 최근에 추가된 번호 가져오기 (첨부파일)
 		
 		if (attachList.size() > 0) {
@@ -43,14 +44,16 @@ public class PsBoardServiceImpl implements PsBoardService {
 			}
 		}
 		 
-		return psBoardResult;
+		return PsBoardResult;
 	}
 
 	@Override
 	public PsBoard selectOneBoard(int nNo) {
+		
+		
 		PsBoard psboard = psboardDAO.selectOneBoard(nNo);
 		
-		if(psboard != null) psboardDAO.updateReadCount(nNo);
+	
 		
 		return psboard;
 	}
@@ -64,25 +67,32 @@ public class PsBoardServiceImpl implements PsBoardService {
 	@Override
 	public PsBoard updateView(int nNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return psboardDAO.selectOneBoard(nNo);
 	}
 
 	@Override
-	public int updateBoard(PsBoard board, List<Attachment> attachList) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateBoard(PsBoard psboard, List<Attachment> attachList) {
+		int totalResult = 0;
+		
+		List<Attachment> originList = psboardDAO.selectAttachmentList(psboard.getNNo());
+		
+		totalResult = psboardDAO.updateBoard(psboard); // DAO이동
+		
+		
+				
+				return totalResult;
 	}
 
 	@Override
 	public int deleteBoard(int nNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return psboardDAO.deleteBoard(nNo);
 	}
 
 	@Override
 	public int deleteFile(int attNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return psboardDAO.deleteFile(attNo);
 	}
 
 }

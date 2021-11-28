@@ -29,13 +29,12 @@
         main{
             display:inline-table;
             position:absolute;
-            top : 10%;
+            top : 20%;
             left : 10%;
             align : center;
             
         } 
         main ul li{
-       		margin-top : 100px;
             list-style: none;
             margin-bottom : 300px;
             border: 1px solid black;
@@ -52,17 +51,16 @@
       
 
         #bsMember {
-            background: rgba(176, 196, 222,.7);
-            color: black;
+            background: red;
+            color: white;
         }
         .text{
-    	    margin-top : 50px;
        	    position: absolute;
             width: 1000px;
             height: 700px;
             top:5%;
             left: 130%;
-            
+            border: 1px solid red; 
             
             font-size: 15pt;
             text-align: left;
@@ -113,7 +111,7 @@
             <div class="text">
                 예약 관리
             </div>
-        </li> 
+        </li>
         <li id="member">
             회원관리
            

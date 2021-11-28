@@ -17,4 +17,6 @@ public interface MemberDAO {
 	int checkIdDuplicate(HashMap<String, Object> hmap);
 	
 	int checkIdDuplicate(String userId);
+
+	int visitCount();
 }

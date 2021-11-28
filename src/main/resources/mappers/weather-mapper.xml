@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="weatherSQL">
+
+	<insert id="campInfoUpdate" parameterType="campInfo">
+		INSERT INTO CAMP_INFO VALUES(SEQ_CAMPNO.NEXTVAL, 
+		#{ campName }, #{ campLa }, #{ campLo }, #{ campArea }, #{ campTel }, 
+		#{ explain })
+	</insert>
+
+	<select id="selectWeather" resultType="campInfo">
+		SELECT * FROM CAMP_INFO
+	</select>
+	
+	<select id="selectTraffic" resultType="campInfo">
+		SELECT * FROM CAMP_INFO
+	</select>
+	
+</mapper>

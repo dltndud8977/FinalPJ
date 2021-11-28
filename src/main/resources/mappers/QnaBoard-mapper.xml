@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qnaboardSQL">
+	
+	<select id="selectBoardList" resultType="QnaBoard">
+		   SELECT QNA.*,(SELECT COUNT(*) FROM ATTACHMENT WHERE ASKNO = QNA.ASKNO) FILECOUNT
+		   FROM QNA QNA
+		   ORDER BY ASKDATE DESC, ASKNO DESC
+   </select>
+	
+	<select id='selectBoardTotalContents' resultType="int">
+			SELECT COUNT(*) FROM QNA
+	</select>
+	
+	<insert id="insertBoard" parameterType="QnaBoard">
+		INSERT INTO QNA(ASKNO, USERID, ASKTITLE, ASKCONTENT, ASKDATE, ASKCATEGORY, ASKBOARDFILE, ASKSTATUS,)
+		VALUES (SEQ_ASKNO.NEXTVAL, #{ userId }, #{ askTitle }, #{ askContent }, SYSDATE, #{ askCategory }, 'Y' )
+	</insert>
+	
+	<select id="insertAttachment" parameterType="Attachment">
+		INSERT INTO ATTACHMENT VALUES (SEQ_AFNO.NEXTVAL, #{ askNo }, #{ nNo }, #{ oldName }, #{ newName }, 'Y' )
+	</select>
+	
+	<select id="selectOneBoard" parameterType="int" resultType="QnaBoard">
+		SELECT * FROM QNABOARD WHERE ASKNO = #{ askNo }
+	</select>
+	
+	<select id="selectAttachmentList" parameterType="int" resultType="Attachment">
+		SELECT * FROM ATTACHMENT WHERE ASKNO = #{ askNo }
+	</select>
+	
+	<update id="updateBoard" parameterType="QnaBoard">
+		UPDATE QNABOARD SET ASKTITLE = #{ askTitle }, ASKCONTENT = #{ askContent }
+		WHERE ASKNO = #{ askNo }
+	</update>
+	
+	<insert id="updateAttachment" parameterType="Attachment">
+		INSERT INTO ATTACHMENT VALUES (SEQ_A 	FNO.NEXTVAL, 
+		 #{ askNo } ,#{ nNo }, #{ oldName }, #{ newName }, 'Y' )
+	</insert>
+	
+	<delete id="deleteAttachment" parameterType="int">
+		DELETE FROM ATTACHMENT WHERE  ASKNO = #{ askNo } 
+	</delete>
+	
+	<delete id="deleteFile" parameterType="int">
+		DELETE FROM ATTACHMENT WHERE ATTACHMENTNO = #{ afNo }
+	</delete>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM QNABOARD WHERE ASKNO = #{ askNo }
+	</delete>
+	<!-- Access to #{ field } -->
+</mapper>

@@ -3,23 +3,23 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="psboardSQL">
 	
-	<select id="selectBoardList" resultType="com.kh.camp.board.model.vo.PsBoard">
-	SELECT PS.*,(SELECT COUNT(*) FROM ATTACHMENT WHERE NNO = PS.NNO) FILECOUNT
-	FROM PSBOARD PS
-	ORDER BY NDATE DESC, NNO DESC
-	</select>
+	<select id="selectBoardList" resultType="PsBoard">
+		   SELECT PS.*,(SELECT COUNT(*) FROM ATTACHMENT WHERE NNO = PS.NNO) FILECOUNT
+		   FROM PSBOARD PS
+		   ORDER BY NDATE DESC, NNO DESC
+   </select>
 	
 	<select id='selectBoardTotalContents' resultType="int">
 			SELECT COUNT(*) FROM PSBOARD
 	</select>
 	
-	<select id="insertBoard" parameterType="PsBoard">
-		INSERT INTO PSBOARD(NNO,AFNO,CMAP,NO, NTITLE, NCONTENT,NDATE, NWRITER)
-		VALUES (SEQ_NNO.NEXTVAL, #{ afNo },  #{ nTitle }, #{ nContent }, #{ nWriter} )
-	</select>
+	<insert id="insertBoard" parameterType="PsBoard">
+		INSERT INTO PSBOARD(NNO,AFNO,CAMPNO, NTITLE, NCONTENT,NDATE, NWRITER)
+		VALUES (SEQ_NNO.NEXTVAL, #{ afNo }, #{ campNo }, #{ nTitle }, #{ nContent }, SYSDATE, #{ nWriter } )
+	</insert>
 	
 	<select id="insertAttachment" parameterType="Attachment">
-		INSERT INTO ATTACHMENT VALUES (SEQ_AFNO.NEXTVAL, #{ nNo }, #{ oldName }, #{ newName}, 'Y' )
+		INSERT INTO ATTACHMENT VALUES (SEQ_AFNO.NEXTVAL, #{ askNo }, #{ nNo }, #{ oldName }, #{ newName }, 'Y' )
 	</select>
 	
 	<select id="selectOneBoard" parameterType="int" resultType="PsBoard">
@@ -27,11 +27,29 @@
 	</select>
 	
 	<select id="selectAttachmentList" parameterType="int" resultType="Attachment">
-		SELECT * FROM ATTACHMENT WHERE PSBOARD = #{ nNo ]
+		SELECT * FROM ATTACHMENT WHERE NNO = #{ nNo }
 	</select>
 	
-	<select id="updateReadCount" parameterType="int" >
-		UPDATE PSBOARD SET PSBOARDREADCOUNT = PSBOARDERCOUNT + 1 WHERE NNO = #{ nNo }
-	</select>
+	<update id="updateBoard" parameterType="PsBoard">
+		UPDATE PSBOARD SET NTITLE = #{ nTitle }, NCONTENT = #{ nContent }
+		WHERE NNO = #{ nNo }
+	</update>
+	
+	<insert id="updateAttachment" parameterType="Attachment">
+		INSERT INTO ATTACHMENT VALUES (SEQ_AFNO.NEXTVAL, 
+		 #{ askNo } ,#{ nNo }, #{ oldName }, #{ newName }, 'Y' )
+	</insert>
+	
+	<delete id="deleteAttachment" parameterType="int">
+		DELETE FROM ATTACHMENT WHERE  NNO = #{ nNo } 
+	</delete>
+	
+	<delete id="deleteFile" parameterType="int">
+		DELETE FROM ATTACHMENT WHERE ATTACHMENTNO = #{ afNo }
+	</delete>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM PSBOARD WHERE NNO = #{ nNo }
+	</delete>
 	<!-- Access to #{ field } -->
 </mapper>

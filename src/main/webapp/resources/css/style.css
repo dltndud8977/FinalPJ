@@ -10,7 +10,6 @@
   font-family: 'Nunito', sans-serif;
   margin:0; padding:0;
   box-sizing: border-box;
-  text-transform: capitalize;
   outline: none; border:none;
   text-decoration: none;
   transition: all .2s linear;
@@ -34,7 +33,7 @@ section{
 
 .heading{
   text-align: center;
-  padding:2.5rem 0
+  padding:0rem 0
 }
 
 .heading span{
@@ -42,18 +41,11 @@ section{
   background:rgba(176, 196, 222,.7);
   color:#1C3145;
   border-radius: .5rem;
-  padding:.2rem 1rem;
+  padding:.20em 1rem;
 }
 
 .heading span.space{
   background:none;
-}
-
-.logo img{
-	margin-left: -101px;
-    margin-bottom: -50px;
-    width: 115%;
-    margin-top : -20px;
 }
 
 
@@ -70,130 +62,8 @@ section{
 }
 
 .btn:hover{
-  background:rgba(201, 203, 202,.1);
+  background:rgba(201, 203, 202, 0);
   color:#1C3145;
-}
-.video-container img{
-	width : 100%;
-}
-
-
-header{
-  position: fixed;
-  top:0; left: 0; right:0;
-  background:	#B0C4DE;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding:2rem 9%;
- 
-}
-
-
-
-header .navbar a{
-  color:#fff;
-  font-size: 2rem;
-  margin:0 .8rem;
-}
-
-header .navbar a:hover{
-  color:#1C3145;
-}
-
-header .icons i{
-  font-size: 2.5rem;
-  color: white;
-  cursor: pointer;
-  margin-right: 2rem;
-}
-
-header .icons i:hover{
-  color:#1C3145;
-}
-
-.login-form-container{
-	position : fixed;
-	top:-120%; left:0;
-	min-height : 100vh;
-	width : 100%;
-	background : rgba(0,0,0, .4);
-	display : flex;
-	align-items: center;
-	justify-content: center;
-	
-}
-
-.login-form-container.active{
-  top:0;
-}
-
-
-.login-form-container form{
-  margin:2rem;
-  padding:1.5rem 2rem;
-  border-radius: .5rem;
-  background:#fff;
-  width:50rem;
-}
-
-.login-form-container form h3{
-  font-size: 3rem;
-  color:#444;
-  text-transform: uppercase;
-  text-align: center;
-  padding:1rem 0;
-}
-
-.login-form-container form .box{
-  width:100%;
-  padding:1rem;
-  font-size: 1.7rem;
-  color:#333;
-  margin:.6rem 0;
-  border:.1rem solid rgba(0,0,0,.3);
-  text-transform: none;
-}
-
-.login-form-container form .box:focus{
-  border-color: var(--orange);;
-}
-
-.login-form-container form #remember{
-  margin:2rem 0;
-}
-
-.login-form-container form label{
-  font-size: 1.5rem;
-}
-
-.login-form-container form .btn{
-  display: block;
-  width:100%;
-}
-
-.login-form-container form p{
-  padding:.5rem 0;
-  font-size: 1.5rem;
-  color:#666;
-}
-
-.login-form-container form p a{
-  color:var(--orange);
-}
-
-.login-form-container form p a:hover{
-  color:#333;
-  text-decoration: underline;
-}
-
-.login-form-container #form-close{
-  position: absolute;
-  top:2rem; right:3rem;
-  font-size: 5rem;
-  color:#fff;
-  cursor: pointer;
 }
 
 .home{
@@ -208,23 +78,37 @@ header .icons i:hover{
 
 .home .content{
   text-align: center;
+  margin-top : 152px;
 }
 
 /* 없어도 될것같은 부분*/
 .home .content h3{
-  font-size: 4.5rem;
-  color:#1C3145;
+  font-size: 7.5rem;
+  color:white;
   text-transform: uppercase;
-  text-shadow: 0 .3rem .5rem rgba(0,0,0,.1);
+  text-shadow: 0 3.3rem 0.5rem rgb(0 0 0 / 30%);
+  margin-left : -40px;
 }
 
 .home .content p{
-  font-size: 2.5rem;
-  color:#1C3145;
+  font-size: 3.5rem;
+  color:white;
   padding:.5rem 0;
 }
 
-.home .video-container img{
+.home .content .btn{
+	
+	padding-top: 4%;
+    width: 300px;
+    height: 100px;
+    font-size: 40px;
+    border-radius: 1rem;
+    border: none;
+	margin-top : 222px;
+	
+}
+
+.home .main-img img{
   position: absolute;
   top:0; left: 0;
   z-index: -1;
@@ -241,19 +125,7 @@ header .icons i:hover{
   top:10rem;
 }
 
-.home .controls .vid-btn{
-  height:2rem;
-  width:2rem;
-  display: inline-block;
-  border-radius: 50%;
-  background:#fff;
-  cursor: pointer;
-  margin:0 .5rem;
-}
 
-.home .controls .vid-btn.active{
-  background: navy;
-}
 
 .reserve .row{
   display: flex;
@@ -274,7 +146,7 @@ header .icons i:hover{
 .reserve .row form{
   flex:1 1 40rem;
   padding:2rem;
-  box-shadow: 0 1rem 2rem rgba(255,127,0,.3);
+  box-shadow: 0 1rem 2rem rgba(135,206,235,.3);
   border-radius: 1rem;
 }
 
@@ -307,7 +179,7 @@ header .icons i:hover{
   flex:1 1 30rem;
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 1rem 2rem rgba(255,127,0,.3);
+  box-shadow: 0 1rem 2rem rgba(135,206,235,.3);
 }
 
 .camp .box-container .box img{
@@ -326,7 +198,7 @@ header .icons i:hover{
 }
 
 .camp .box-container .box .content h3 i{
-  color:var(--orange);
+  color:var(--skyblue);
 }
 
 .camp .box-container .box .content p{
@@ -337,7 +209,7 @@ header .icons i:hover{
 
 .camp .box-container .box .content .stars i{
   font-size:1.7rem;
-  color:var(--orange);
+  color:var(--skyblue);
 }
 
 .camp .box-container .box .content .price{
@@ -357,11 +229,10 @@ header .icons i:hover{
 }
 
 .review .box{
-  
   padding:2rem;
   text-align: center;
-  box-shadow: 0 1rem 2rem rgba(255, 127,0,.3);
-  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem rgba(135,206,235,.3);
+  border-radius: .5rem;
 }
 
 .review .box img{
@@ -384,7 +255,7 @@ header .icons i:hover{
 }
 
 .review .box .stars i{
-  color:var(--orange);
+  color:var(--skyblue);
   font-size: 1.7rem;
 }
 
@@ -407,7 +278,7 @@ header .icons i:hover{
 .contact .row form{
   flex:1 1 50rem;
   padding:2rem;
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+  box-shadow: 0 1rem 2rem rgba(135,206,235,.3);
   border-radius: .5rem;
 }
 
@@ -433,25 +304,7 @@ header .icons i:hover{
   width:100%;
 }
 
-.footer{
-  background:#333;
-}
 
-
-
-.footer {
-  text-align: center;
-  padding:2rem 1rem;
-  margin-top: 1rem;
-  font-size: 2rem;
-  font-weight: normal;
-  color:#fff;
-  border-top: .1rem solid rgba(255,255,255,.2);
-}
-
-.footer span{
-  color:var(--orange);
-}
 
 
 

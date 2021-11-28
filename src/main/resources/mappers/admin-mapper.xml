@@ -47,6 +47,7 @@
 	</update>
 	
 	<select id="visit" resultType="Visit">
-		SELECT * FROM VISIT
-	</select>
+      SELECT * FROM VISIT
+   </select>
+	
 </mapper>

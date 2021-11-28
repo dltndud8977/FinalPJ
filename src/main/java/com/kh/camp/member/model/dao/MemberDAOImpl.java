@@ -17,37 +17,50 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int insertMember(Member member) {
 		
-		return sqlSession.insert("memberSQL.inserMember", member);
+		return sqlSession.insert("memberSQL.insertMember", member);
 	}
 
 	@Override
 	public Member selectOneMember(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return sqlSession.selectOne("memberSQL.selectOne", userId);
 	}
 
 	@Override
 	public int updateMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.update("memberSQL.updateMember", member);
 	}
 
 	@Override
 	public int deleteMember(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete("memberSQL.deleteMember", userId);
 	}
 
 	@Override
 	public int checkIdDuplicate(HashMap<String, Object> hmap) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		sqlSession.selectOne("memberSQL.checkIdDuplicate", hmap);
+		
+		return (Integer)hmap.get("result");
 	}
 
 	@Override
 	public int checkIdDuplicate(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return sqlSession.selectOne("memberSQL.checkIdDuplicate", userId);
 	}
+	
+	@Override
+	   public int visitCount() {
+	      int result =sqlSession.update("memberSQL.visitCount");
+	      
+	      if(result == 0) {
+	         return sqlSession.insert("memberSQL.visitInsert");
+	      } else {
+	       return result;
+	      }
+	   }
 
 }

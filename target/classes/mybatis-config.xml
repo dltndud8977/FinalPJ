@@ -13,6 +13,7 @@
  	<typeAliases>
  	 
  		<typeAlias alias="Member" type="com.kh.camp.member.model.vo.Member"/>
+ 		
 
  		<typeAlias alias="Camp" type="com.kh.camp.reserve.model.vo.Camp"/>
  		<typeAlias alias="Room" type="com.kh.camp.reserve.model.vo.Room"/>
@@ -20,7 +21,13 @@
 
  		<typeAlias alias="PsBoard" type="com.kh.camp.board.model.vo.PsBoard"/>
  		<typeAlias alias="Attachment" type="com.kh.camp.board.model.vo.Attachment"/>
+
+
+		<typeAlias alias="qnaBoard" type="com.kh.camp.qnaboard.model.vo.qnaBoard"/>
+
  		<typeAlias alias="Visit" type="com.kh.camp.admin.model.vo.Visit" />
+
+		<typeAlias alias="CampInfo" type="com.kh.camp.weather.model.vo.CampInfo"/>
 
  	<!-- 
  		<typeAlias alias="Dev" type="com.kh.camp.demo.model.vo.Dev"/>

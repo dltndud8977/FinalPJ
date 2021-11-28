@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body{
-	background : beige;
+	background : white;
 }
 
 *{
@@ -10,7 +10,7 @@ body{
 }
 
 div{
-	width : 460px;
+	
 	margin : 30px auto;
 
 }
@@ -33,22 +33,36 @@ button{
 	font-size : 20px;
 	cursor:pointer;
 	display: block;
-	background-color: #090;
+	background-color: #B0C4DE;
 	color:white;
-	border : 0px solid #090;	
+	border : 0px solid #B0C4DE;	
 	padding : 10px;
-	width: -webkit-fill-available;
-	
+	width: 468px;
+	border : 1px solid #B0C4DE;
 }
-	
+
+button:hover{
+	cursor:pointer;
+	background:rgba(201, 203, 202, 0);
+  	color:#1C3145;
+  	
+}
 
 
 input{
 	height : 40px;
+	border : 1px solid #B0C4DE;
+	padding-left : 10px;
+}
+
+input:hover{
+	border-radius : 1rem;
+	box-shadow: 0 1rem 2rem rgba(135,206,235,.5);
 }
 
 form{
 	text-align: left;
+	margin-left : 38%;
 }
 
 #btn-security{
@@ -71,6 +85,91 @@ form{
 	line-height : 40px;
 	
 }
+
+
+.memberView-form-container{
+	position : fixed;
+	top:-120%; left:0;
+	min-height : 100vh;
+	width : 100%;
+	background : rgba(0,0,0, .4);
+	display : flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.memberView-form-container.active{
+  top:0;
+}
+
+
+.memberView-form-container form{
+  margin:2rem;
+  padding:1.5rem 2rem;
+  border-radius: .5rem;
+  background:#fff;
+  width:50rem;
+}
+
+.memberView-form-container form h3{
+  font-size: 3rem;
+  color:#444;
+
+  text-align: center;
+  padding:1rem 0;
+}
+
+.memberView-form-container form .box{
+  width:100%;
+  padding:1rem;
+  font-size: 1.7rem;
+  color:#333;
+  margin:.6rem 0;
+  border:.1rem solid rgba(0,0,0,.3);
+  text-transform: none;
+}
+
+.memberView-form-container form .box:focus{
+  border-color: var(--orange);;
+}
+
+.memberView-form-container form #remember{
+  margin:2rem 0;
+}
+
+.memberView-form-container form label{
+  font-size: 1.5rem;
+}
+
+.memberView-form-container form .btn{
+  display: block;
+  width:100%;
+}
+
+.memberView-form-container form p{
+  padding:.5rem 0;
+  font-size: 1.5rem;
+  color:#666;
+}
+
+.memberView-form-container form p a{
+  color:var(--skyblue);
+}
+
+.memberView-form-container form p a:hover{
+  color:#333;
+  text-decoration: underline;
+}
+
+.memberView-form-container #form-close{
+  position: absolute;
+  top:2rem; right:3rem;
+  font-size: 5rem;
+  color:#fff;
+  cursor: pointer;
+}
+
 
 
 

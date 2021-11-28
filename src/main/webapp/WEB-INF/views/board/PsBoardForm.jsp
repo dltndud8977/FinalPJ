@@ -8,25 +8,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>게시글 작성</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		<script src="${Context.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 	<script>
 	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 	function validate(){
-		var content = $("[name=nContent]").val();
+		var content = $("[name=askContent]").val();
 		if(content.trim().length==0){
 			alert("내용을 입력하세요");
 			return false;
 		}
-		return true;
+		return true;	
 	}
+ 
+	
+	var category = document.boardFrm.campNo.value;
+	if (category == "-") {
+		alert('카테고리를 선택해주세요.');
+		document.boardFrm.campNo.focus();
+		return false;
+
+	}
+	
+	
+	
 	
 	/*부트스트랩 : file 변경시 파일명 보이기 */
 	$(function(){
 		$('[name=upFile]').on('change',function(){
-		    //var fileName = $(this).val();//C:\fakepath\파일명
-		    //var fileName = this.files[0].name;//파일명(javascript)
-		    //var fileName = $(this)[0].files[0].name;//파일명(jquery)
 		    var fileName = $(this).prop('files')[0].name;//파일명(jquery)
-			//console.log($(this).prop('files'));//FileList {0: File(54955), length: 1}
 		    console.log($(this).val());
 		    $(this).next('.custom-file-label').html(fileName);
 		})
@@ -37,9 +48,28 @@
 	<div id="container">
 		<c:import url="../common/header.jsp"/>
 		<div id="board-container">
-			<form name="boardFrm" action="${pageContext.request.contextPath}/board/PsBoardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
-				<input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" required>
-				<input type="text" class="form-control" name="boardWriter" value="${member.userId}" readonly required>
+			<form name="boardFrm" action="${pageContext.request.contextPath}/qnaboard/qnaBoardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
+				<input type="text" class="form-control" placeholder="제목" name="qnaitle" id="boardTitle" required>
+				<input type="text" class="form-control" name="nWriter" value="${member.userId}" readonly required>
+				<div class="col-lg-4">
+									<div class="checkout__input">
+										<p>
+											카테고리
+												<span>
+													*
+												</span>
+										</p>
+										<div>
+											<select id="campNo" name="campNo" class="form">
+												<option value="-" selected="selected">선택하세요
+												<option value="1">양평금물산하늘소캠핑장
+												<option value="2">청계산골든밸리캠핑장
+											    <option value="3">용인반딧불캠핑장
+												<option value="4">광명도덕산캠핑장
+											</select>
+										</div>
+									</div>
+								</div>
 				<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
 				<!-- style.css에서 div의  padding:10px을 제거함 -->
 				<div class="input-group mb-3" style="padding:0px;">
@@ -60,7 +90,7 @@
 				    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
 				  </div>
 				</div>
-			    <textarea class="form-control" name="boardContent" placeholder="내용" required></textarea>
+			    <textarea class="form-control" name="qnaContent" placeholder="내용" required></textarea>
 				<br />
 				<input type="submit" class="btn btn-outline-success" value="저장" >
 			</form>
