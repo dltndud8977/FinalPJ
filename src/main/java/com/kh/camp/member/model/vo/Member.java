@@ -23,6 +23,8 @@ public class Member {
 	private String userStatus;
 	private String bsNo;
 	private String bsName;
+	private Date bsEndDate;
+	private String bsStatus;
 
 	
 	public Member(String userId, String userPw) {

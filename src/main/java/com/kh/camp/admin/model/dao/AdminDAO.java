@@ -60,6 +60,5 @@ public class AdminDAO {
 		return sqlSession.selectList("adminSQL.visit");
 	}
 
-	
-	
+
 }

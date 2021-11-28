@@ -12,8 +12,6 @@
 <meta charset="UTF-8">
 <title>캠핑장 선택</title>
 <style>
-
-
 	
 	header{
 		float:left;

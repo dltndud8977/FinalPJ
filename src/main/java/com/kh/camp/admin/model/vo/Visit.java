@@ -16,3 +16,5 @@ public class Visit {
 	private int visitCount;
 	private int reserCount;
 }
+
+

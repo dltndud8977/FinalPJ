@@ -66,6 +66,5 @@ public class ReserveService {
 		return reservedao.reserveFull(campName);
 	}
 
-	
-	
+
 }
