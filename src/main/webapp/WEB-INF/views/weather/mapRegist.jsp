@@ -394,6 +394,6 @@ function removeAllChildNods(el) {
 <c:import url="../common/footer.jsp"/>
 
 <!-- custom js file link  -->
-	<script src="/camp/resources/js/script.js"></script>
+<!-- <script src="/camp/resources/js/script.js"></script> -->	
 </body>
 </html>

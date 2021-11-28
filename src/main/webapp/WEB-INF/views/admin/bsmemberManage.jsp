@@ -118,6 +118,7 @@
 						<td>${m.userName}</td>
 						<td>${m.bsName}</td>
 						<td>${m.email}</td>
+						<td class="contractEndDate">${m.bsEndDate}</td>
 						<td class="contractStatus">${m.bsStatus }</td>
 						<td><input type="checkbox" class="check" name="contract" id="contractCheck" value="${m.bsNo}"></td>
 					</tr>
