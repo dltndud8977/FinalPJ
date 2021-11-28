@@ -25,4 +25,6 @@ public interface qnaBoardService {
 	int deleteBoard(int askNo);
 
 	int deleteFile(int askNo);
+	
+	
 }

@@ -241,5 +241,8 @@ function banner(selector, imgList, speed){
 </div>	
 
 <c:import url="../common/footer.jsp"/>
+
+<!-- custom js file link  -->
+	<script src="/camp/resources/js/script.js"></script>
 </body>
 </html>

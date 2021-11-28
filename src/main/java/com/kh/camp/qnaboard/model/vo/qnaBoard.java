@@ -13,19 +13,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 public class qnaBoard implements Serializable{
 	
-	private int askno;
-	private String userid;
-	private String asktitle;
-	private String askcontent;
-	private	Date askdate;
-	private int	askcategory;
-	private	String askboardfile;
-	private String askstatus;
-	private	String answerid;
-	private String answercontent;
-	private Date answerdate;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1025L;
+	private int askNo;
+	private String userId;
+	private String askTitle;
+	private String askContent;
+	private	Date askDate;
+	private int	askCategory;
+	private	String askBoardfile;
+	private String askStatus;
+	private	String answerId;
+	private String answerContent;
+	private Date answerDate;
+	private int fileCount;
 
 }

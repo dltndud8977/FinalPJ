@@ -184,6 +184,8 @@
 		});
 	</script>
 	
+	<!-- custom js file link  -->
+	<script src="/camp/resources/js/script.js"></script>
 	
 </body>
 </html>

@@ -8,10 +8,9 @@
   font-family: 'Nunito', sans-serif;
   margin:0; padding:0;
   box-sizing: border-box;
-
   outline: none; border:none;
   text-decoration: none;
-  transition: all .2s linear;
+  
 }
 
 *::selection{
@@ -71,12 +70,13 @@ header .navbar a{
   color:#fff;
   font-size: 3rem;
   margin:0 3rem;
+  text-decoration : none;
  
 }
 
 header .navbar a:hover{
   color:#1C3145;
-  text-shadow : 
+  text-decoration : none;
 }
 
 header .icons i{

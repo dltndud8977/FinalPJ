@@ -37,8 +37,19 @@
 	.reservationbtn{
 		margin-left : 300px;
 		background-color : rgba(176, 196, 222,.7);
-		width : 100px;
+		width : 200px;
 		height : 50px;		
+		cursor : pointer;
+		color : white;
+		border : 1px solid #B0C4DE;	
+		font-size : 20px;
+	}
+	
+	.reservationbtn:hover{
+		
+		background:rgba(201, 203, 202, 0);
+	  	color:#1C3145;
+
 	}
 
 	.imgdiv{
@@ -216,5 +227,8 @@ span.next {
 	
 </div>
  <c:import url="../common/footer.jsp"/>
+ 
+ <!-- custom js file link  -->
+	<script src="/camp/resources/js/script.js"></script>
 </body>
 </html>

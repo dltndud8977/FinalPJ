@@ -9,8 +9,9 @@
 	<meta charset="UTF-8">
 	<title>게시글 작성</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-		<script src="${Context.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+	<script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<script src="${Context.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+	 
 	<script>
 	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 	function validate(){
@@ -42,30 +43,69 @@
 		    $(this).next('.custom-file-label').html(fileName);
 		})
 	});
+	
+	
+	
 	</script>
+	 <style>
+	div#board-container{width:1200px; margin:0 auto; text-align:center; margin-top:7.9%;}
+	#comple{margin-left:93.3%;}
+  	#board-container{
+  		
+  		 position : relative;
+  		margin-left: 9.5%;
+  		margin-top: 2%;
+  		width : 80%;
+ 		
+  	}
+  	#exampleSelect1{
+  	 margin-left : 15%;
+  	 margin-top: 0%;
+  	 
+  	}
+  	
+  	#exampleSelect{
+  		width:30%;
+  		 margin-top: 3%;
+  		 margin-left: -3.8%;
+  		
+  	}
+ 
+ 	#boardname{
+ 	margin-top: 1%;
+ 	}
+ 	.banner{
+ 	width:9%;
+ 	
+ 	margin-top: -69%;
+ 	margin-left: 90.5%;
+ 	}
+ 	
+ 	.banner1{
+ 	width:9%;
+ 	
+ 	margin-top: -35%;
+ 	margin-left: 90.5%;
+ 	}
+  
+  </style>
 </head>
 <body>
 	<div id="container">
-	
+		<c:import url="../common/header.jsp"/>
 		<div id="board-container">
-			<form name="boardFrm" action="${pageContext.request.contextPath}/board/PsBoardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
-				<input type="text" class="form-control" placeholder="제목" name="nTitle" id="boardTitle" required>
-				<input type="text" class="form-control" name="nWriter" value="${member.userId}" readonly required>
+			<form name="boardFrm" action="${pageContext.request.contextPath}/qnaboard/qnaBoardFormEnd.do" method="post"  enctype="multipart/form-data">
+				<input type="text" class="form-control" placeholder="제목" name="askTitle" id="boardTitle" required>
+				<input type="text" class="form-control" name="userId" value="${member.userId}" readonly required>
 				<div class="col-lg-4">
 									<div class="checkout__input">
-										<p>
-											카테고리
-												<span>
-													*
-												</span>
-										</p>
-										<div>
-											<select id="campNo" name="campNo" class="form">
+										<div class="form-group">
+										<label id="exampleSelect" class="input-group-text">카테고리</label>
+											<select id="exampleSelect1" name="askCategory" class="custom-file-label">
 												<option value="-" selected="selected">선택하세요
-												<option value="1">양평금물산하늘소캠핑장
-												<option value="2">청계산골든밸리캠핑장
-											    <option value="3">용인반딧불캠핑장
-												<option value="4">광명도덕산캠핑장
+												<option value="1">문의사항
+												<option value="2">사업자 등록
+											    
 											</select>
 										</div>
 									</div>
@@ -87,15 +127,22 @@
 				  </div>
 				  <div class="custom-file">
 				    <input type="file" class="custom-file-input" name="upFile" id="upFile2">
-				    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
+				    <label class="custom-file-label" for="upFile2">파일을  선택하세요</label>
 				  </div>
 				</div>
-			    <textarea class="form-control" name="nContent" placeholder="내용" required></textarea>
+			    <textarea class="form-control"  name="askContent" placeholder="내용" rows=22; required></textarea>
 				<br />
-				<input type="submit" class="btn btn-outline-success" value="저장" >
+					<input type="submit" class="btn btn-outline-success" id="comple" value="저장" >
+			<input type="button" class="btn btn-outline-danger" id="delete" value="취소" onclick="location.href='${pageContext.request.contextPath}/qnaboard/qnaBoardList.do'"/>
 			</form>
 		</div>
 		<c:import url="../common/footer.jsp"/>
+	</div>
+	<div>
+	<aside>
+	<img src="/camp/resources/images/campban.gif" art="배너" class="banner">
+	<img src="/camp/resources/images/ban2.gif" art="배너" class="banner1">
+	</aside>
 	</div>
 </body>
 </html>

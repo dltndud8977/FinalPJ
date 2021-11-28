@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<title>게시판</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 	<script>
 		function fn_goBoardForm(){
@@ -25,16 +25,30 @@
 			});
 		});
 	</script>
+	 <style>
+  
+  	
+  	#board-container{
+  		
+  		 position : relative;
+  		margin-left: -15%;
+  		margin-top: 10%;
+  		width : 130%;
+ 		
+  	}
+  	
+ 
+  	
+  </style>
 	</head>
 <body>
-	<div class="container">
-	   <c:import url="../common/header.jsp"/>
+ <c:import url="../common/header.jsp"/>
+	<div class="container">   
 	   	  <section id ="board-container">
 	     	 <div class="tableArea">
-	      
-	     	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="fn_goBoardForm()";/>
+	     	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-info" onclick="fn_goBoardForm()"; />
                   <table id="listArea" class="table table-striped table-hover">
-                     <tr>
+                     <tr class="table-info">
                         <th>번호</th>
                         <th>제목</th>               
                         <th>내용</th>               
@@ -53,13 +67,14 @@
                                           <img alt="첨부파일" src="${pageContext.request.contextPath }>
                               </c:if>
                         </td>
-                        
                      </tr>
                 </c:forEach>
             </table>
-	      <c:out value="${pageBar}" escapeXml="false"/>
+	      <c:out value="${pageBar}" escapeXml="false"/>	    	    
 	    </section>
-	 <c:import url="../common/footer.jsp"/>
+		 
  </div>
+<c:import url="../common/footer.jsp"/>
+
 </body>
 </html>
