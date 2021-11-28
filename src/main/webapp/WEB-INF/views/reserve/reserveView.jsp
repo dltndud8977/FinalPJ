@@ -8,6 +8,8 @@
 <head>
 
   <meta charset='utf-8' />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <title>예약하기</title>
   <link rel="stylesheet" href="/camp/resources/css/picture.css">
   <!-- jquery CDN -->
@@ -84,18 +86,6 @@
 	.room {
 		cursor:pointer;
 	}
-	
-	td{
-		text-align : center;
-		
-		 border:.1rem solid rgba(0,0,0,.9);
-	}
-	
-	th{
-		 border:.1rem solid rgba(0,0,0,.9);
-	}
-	
-	
 		
 	
 	
@@ -123,6 +113,10 @@
 		right: -650px;
 	}
 	
+	#table{
+		width : 600px;
+		height : 500px;
+	}
 </style>
 </head>
 <body style="padding:30px;">
@@ -164,23 +158,24 @@
 	<br />
 	
 	<div class = "camp" id="table">
-  <table border="1">
-  		<tr>
+	
+	<table class="table table-hover">
+<tr>
   			<th><h2>사진</h2></th>
   			<th><h2>이름</h2></th>
   			<th><h2>가격</h2></th>
   		</tr>
   		<c:forEach items="${room}" var="r" varStatus="vs">
   		
-  		<tr id="${r.roomNo}" class="room">
-  		
+  		<tr id="${r.roomName}" class="room">
   			<td>
-  			<img width="300px" height="200px" src="${pageContext.request.contextPath}/resources/images/${r.roomPicture}"/></td>
+  			<img width="200px" height="120px" src="${pageContext.request.contextPath}/resources/images/${r.roomPicture}"/></td>
   			<td width="300px" id="roomName"><h3>${r.roomName}</h3></td>
   			<td width="200px" id="roomPrice"><h3>${r.roomPrice}</h3></td>
   		</tr>
   		</c:forEach>
-  </table>
+</table>
+
   </div>
     
   </div>
@@ -337,7 +332,7 @@
 	$(function(){
 		$("tr[id]").on("click",function(){
 			console.log(this)
-			var roomNo = $(this).attr("id");
+			var roomName = $(this).attr("id");
 			var start = $('#start').attr('value');
 			var finish = $('#finish').attr('value');
 			var userId= $('#userId').val();
@@ -410,7 +405,7 @@
 				}
 			}
 			
-
+			
 		});
 	});
 </script>

@@ -29,7 +29,8 @@
    	</delete>
 
 	<select parameterType="hashmap" id="checkIdDuplicate" statementType="CALLABLE">
-		{ CALL ID_DUP_CHECK( #{ userId, mode=IN, jdbcType=VARCHAR },#{ result, mode=OUT, jdbcType=NUMERIC, javaType=integer }) } 
+		{ CALL ID_DUP_CHECK( #{ userId, mode=IN, jdbcType=VARCHAR },#{ result, mode=OUT, jdbcType=NUMERIC, javaType=integer }) }
+
 	</select>
    
    <insert id="visitInsert">

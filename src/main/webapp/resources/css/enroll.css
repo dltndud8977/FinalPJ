@@ -9,7 +9,7 @@ body{
 	padding : 0;
 }
 
-div{
+#lsy div{
 	
 	margin : 30px auto;
 
@@ -29,8 +29,8 @@ label{
 	position: relative;
 }
 
-button{
-	font-size : 20px;
+.lsy button{
+	font-size : 30px;
 	cursor:pointer;
 	display: block;
 	background-color: #B0C4DE;
@@ -39,9 +39,10 @@ button{
 	padding : 10px;
 	width: 468px;
 	border : 1px solid #B0C4DE;
+
 }
 
-button:hover{
+.lsy button:hover{
 	cursor:pointer;
 	background:rgba(201, 203, 202, 0);
   	color:#1C3145;

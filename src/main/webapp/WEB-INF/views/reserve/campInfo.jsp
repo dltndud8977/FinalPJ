@@ -25,7 +25,7 @@
 	
 	.camp{
 		position : relative;
-		margin-top : 20px;
+		margin-top : 40px;
 		
 		
 	}
@@ -34,12 +34,23 @@
 		width: 720px;
 		
 	}
-	.reservationbtn{
-		margin-left : 300px;
-		background-color : rgba(176, 196, 222,.7);
-		width : 100px;
-		height : 50px;		
-	}
+   .reservationbtn{
+      margin-left : 300px;
+      background-color : rgba(176, 196, 222,.7);
+      width : 200px;
+      height : 50px;      
+      cursor : pointer;
+      color : white;
+      border : 1px solid #B0C4DE;   
+      font-size : 20px;
+   }
+   
+   .reservationbtn:hover{
+      
+      background:rgba(201, 203, 202, 0);
+        color:#1C3145;
+
+   }
 
 	.imgdiv{
 		object-fit: cover;
@@ -105,8 +116,8 @@ span.next {
 		<table>
 			<c:forEach items="${board}" var="b" varStatus="vs">
 			<tr>
-				<td>${b.NWriter} :</td>
-				<td>&nbsp;${b.NContent}</td>
+				<td><h2>${b.NWriter} :</h2></td>
+				<td><h2>&nbsp;${b.NContent}</h2></td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -210,7 +221,7 @@ span.next {
 
   
   	
-
+  	
   	</script>
 
 	

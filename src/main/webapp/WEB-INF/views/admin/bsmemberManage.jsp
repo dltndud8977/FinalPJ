@@ -34,34 +34,16 @@
             align : center;
             
         } 
-        main ul li{
-            list-style: none;
-            margin-bottom : 300px;
-            border: 1px solid black;
-            width: 300px;
-            height: fit-content;
-            font-size: 18pt;
-            font-weight: bold;
-            text-align: center;
-         
-            cursor:pointer; 
-            
-            
-        }
+
       
 
-        #bsMember {
-            background: red;
-            color: white;
-        }
+   
         .text{
        	    position: absolute;
             width: 1000px;
             height: 700px;
-            top:5%;
-            left: 130%;
-            border: 1px solid red; 
-            
+            top:300%;
+                     
             font-size: 15pt;
             text-align: left;
             background: rgba(245, 243, 243, 0.979);
@@ -103,25 +85,18 @@
 	
 
  <main>
-    <ul>
-      
-        <li id="reservation">
-            예약관리
-            
-            <div class="text">
-                예약 관리
-            </div>
-        </li>
-        <li id="member">
-            회원관리
-           
-            
-        <li id="bsMember">
-            사업자 관리
-         
-        </li>
-       
-    </ul>
+      <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath }/admin/reserManage.do">예약관리</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="${pageContext.request.contextPath }/admin/memberManage.do">일반회원관리</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="${pageContext.request.contextPath }/admin/bsMemberManage.do">사업자회원관리</a>
+  </li>
+ 
+</ul>
     
      <div class="text">
                <table id="tbl-board" class="table table-striped table-hover" border="1">
@@ -143,7 +118,6 @@
 						<td>${m.userName}</td>
 						<td>${m.bsName}</td>
 						<td>${m.email}</td>
-						<td class="contractDate">${m.bsEndDate}</td>
 						<td class="contractStatus">${m.bsStatus }</td>
 						<td><input type="checkbox" class="check" name="contract" id="contractCheck" value="${m.bsNo}"></td>
 					</tr>

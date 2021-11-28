@@ -12,6 +12,8 @@
 <meta charset="UTF-8">
 <title>캠핑장 선택</title>
 <style>
+
+
 	
 	header{
 		float:left;
@@ -20,7 +22,7 @@
 	.camping{
 	}
 	.camp{
-		margin-top : 100px;
+		margin-top : 150px;
 		cursor:pointer; 
 		width : 750px;
 		z-index : 5;
@@ -38,7 +40,7 @@
 	.map {
 		display: inline-block;
 		float:left;
-		margin-top: 100px;
+		margin-top: 150px;
 		margin-left : 50px;
 	
 	}
@@ -108,7 +110,7 @@
 </div>
 	<div class="camping map" >
 	
-	<div id="map" style="width:800px;height:1100px;"></div>
+	<div id="map" style="width:800px;height:1000px;"></div>
 	<hr />
 	</div>
 
@@ -118,7 +120,7 @@
 		var container = document.getElementById('map');
 		var options = {
 			center: new kakao.maps.LatLng(37.416009163800204, 127.07811618277573),
-			level: 12
+			level: 11
 		};
 		console.log(${list.campLa});
 

@@ -24,7 +24,7 @@
   	.text{
   		 top : 30%;
   		 position: absolute;
- 		 left: 10%;
+ 		 left: 20%;
  		 width : 1000px;
   	}
   	
@@ -35,13 +35,13 @@
  		 width : 1300px;
  		 height : 1000px;
   	}
-  	* {
-  		font-size : 0.7em;
-  	}
+  	
   	
   	.btn{
   		width : 100px;
   	}
+  	
+  	
   </style>
 </head>
 <body>
@@ -81,6 +81,7 @@
             <div id='calendar-container'>
   				  <div id='calendar'></div>
  		   </div>
+ 		   
  		   
            <script>
           
@@ -124,7 +125,8 @@
    	       		for(var i=0, result=[]; i<data.length;i++){
    	       		var start = formatDate(new Date(data[i].checkIn));
    	       		var end = formatDate(new Date(data[i].checkOut+(86401*1000)));
-   	       		var title = data[i].campName;    
+   	       		var title = data[i].campName;
+   	       		
    	       		result.push({"start":start,"end":end,"title":title})
    	       		}
    	       		console.log(end);
@@ -169,6 +171,7 @@
 	       	},
 	    });
           
+           
            
     
            </script>
