@@ -50,5 +50,7 @@
 	<delete id="deleteBoard" parameterType="int">
 		DELETE FROM QNA WHERE ASKNO = #{ askNo }
 	</delete>
+	
+	
 	<!-- Access to #{ field } -->
 </mapper>

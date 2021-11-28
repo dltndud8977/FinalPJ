@@ -82,6 +82,9 @@
  	#boardname{
  	margin-top: 1%;
  	}
+ 	.form-inline{
+ 	margin-top: 2%;
+ 	}
  	
   
   </style>
@@ -96,7 +99,7 @@
 		</div>
 			<form name="boardFrm" action="${pageContext.request.contextPath}/board/PsBoardFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
 				<input type="text" class="form-control" placeholder="제목" name="NTitle" id="boardTitle" required>
-				<input type="text" class="form-control" name="NWriter" id="boardname" value="${member.userId}" readonly required>
+				<input type="text" class="form-control" name="NWriter" id="boardname" value="${member.userId}" readonly required>				
 				<div class="col-lg-4">
 									<div class="checkout__input">
 										

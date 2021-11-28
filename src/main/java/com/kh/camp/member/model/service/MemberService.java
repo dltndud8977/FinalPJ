@@ -13,5 +13,7 @@ public interface MemberService {
 	int deleteMember(String userId);
 	
 	int checkIdDuplicate(String userId);
+	
+	int pwUpdateMember(Member member);
 
 }

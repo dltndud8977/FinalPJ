@@ -27,9 +27,10 @@ public class Member {
 	private String bsStatus;
 
 	
-	public Member(String userId, String userPw) {
+	public Member(String userId, String userPw, String email) {
 		this.userId = userId;
 		this.userPw = userPw;
+		this.email = email;
 		
 	}
 	

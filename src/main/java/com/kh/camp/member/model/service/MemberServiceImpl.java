@@ -48,6 +48,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.checkIdDuplicate(hmap);
 	}
 	
+	@Override
+	public int pwUpdateMember(Member member) {
+		
+		return memberDAO.pwUpdateMember(member);
+	}
+	
 	
 
 }

@@ -88,5 +88,6 @@ public class qnaBoardDAOImpl implements qnaBoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("qnaboardSQL.deleteFile", askNo);
 	}
-
+	
+	
 }

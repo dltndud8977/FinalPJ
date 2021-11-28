@@ -1,9 +1,14 @@
 package com.kh.camp.member.controller;
 
+import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+
 
 import com.kh.camp.exception.MemberException;
 import com.kh.camp.member.model.service.MemberService;
@@ -26,6 +32,7 @@ public class MemberController {
 	
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
@@ -186,4 +193,94 @@ public class MemberController {
 		
 		return map;
 	}
+	
+	@RequestMapping("/member/pw_find.do")
+	public String pw_find() {
+		
+		return "member/pw_find";
+	}
+	
+	@RequestMapping("/member/pw_findEnd.do")
+	public String pw_findEnd(@RequestParam String userId, 
+			  			@RequestParam String email,
+			  			Model model) {
+		
+		
+		Member result = memberService.selectOneMember(userId);
+		
+		System.out.println("받아온 정보 확인 : " + userId + "/" + email);
+		
+		String loc = "/member/pw_find.do";
+		String msg = "";
+
+		
+		if(userId.equals(result.getUserId())) {
+			if( email. equals(result.getEmail())) {
+				
+				msg = "이메일 확인 완료";
+				
+				
+				
+				return "member/pw_new";
+				
+			} else {
+				
+				msg = "이메일이 일치하지 않습니다.";
+				System.out.println(result.getUserId());
+				
+			} 
+		} else {
+			
+			msg = "존재하지 않는 아이디입니다.";
+		}
+	
+		
+//		System.out.println(result.getEmail());
+		
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return "common/msg";
+	}
+	
+	@RequestMapping("/member/pw_new.do")
+	public String pw_new(Member member, Model model, SessionStatus status ) throws IOException {
+		
+		int result = memberService.pwUpdateMember(member);
+		
+		
+		
+		
+		
+		String loc = "/";
+		String msg = "";
+		
+		if(result > 0) {
+			
+			msg = "비밀번호 수정 완료!";
+			model.addAttribute("member", member);
+			
+			if ( ! status.isComplete() ) {
+				status.setComplete();			
+			}
+			
+		} else {
+			
+			msg = "비밀번호 수정 실패!";
+			if ( ! status.isComplete() ) {
+				status.setComplete();			
+			}
+			
+		}
+		
+		model.addAttribute("loc", loc);
+		model.addAttribute("msg", msg);
+		
+		return "common/msg";
+		
+	}
+	
+	
+	
+	
 }

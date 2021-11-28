@@ -103,9 +103,11 @@ public class qnaBoardServiceImpl implements qnaBoardService {
 	}
 
 	@Override
-	public int deleteFile(int askboardfile) {
+	public int deleteFile(int askboardfile)  {
 		// TODO Auto-generated method stub
 		return qnaboardDAO.deleteFile(askboardfile);
 	}
+	
 
+	 
 }

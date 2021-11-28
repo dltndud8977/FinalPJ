@@ -7,7 +7,7 @@
 	<!-- 각자 다들 데이터베이스에 맞게 수정하기 -->
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES( #{userId} , #{userPw} ,  #{userType}, #{phone},
-									#{email}, #{userName}, DEFAULT, #{bsNo}, #{bsName}, DEFAULT, DEFAULT)
+									#{email}, #{userName}, 'Y', #{bsNo}, #{bsName}, DEFAULT, DEFAULT)
 	</insert>
 	
 	
@@ -21,7 +21,7 @@
    </update>
    
    	<update parameterType="Member" id="updateMember">
-   		UPDATE MEMBER SET USERNAME = #{userName}, EMAIL = #{email}, PHONE = #{phone}WHERE USERID = #{userId} 
+   		UPDATE MEMBER SET USERNAME = #{userName}, EMAIL = #{email}, PHONE = #{phone} WHERE USERID = #{userId} 
    	</update>
    
    	<delete parameterType="string" id="deleteMember">
@@ -36,5 +36,9 @@
    <insert id="visitInsert">
       INSERT INTO VISIT VALUES(SUBSTR(SYSDATE,1,5),1,0)
    </insert>
+   
+   <update parameterType="string" id="pwUpdateMember">
+   		UPDATE MEMBER SET USERPW = #{userPw} WHERE USERID = #{userId}
+   </update>
 	
 </mapper>

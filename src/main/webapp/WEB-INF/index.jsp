@@ -198,9 +198,9 @@
 
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic1.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
+                    <img src="/camp/resources/images/fire.jpg" alt="">
+                    <h3>이수영</h3>
+                    <p>불멍 때리기 너무 좋은 곳이였습니다.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -212,9 +212,9 @@
             </div>
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic2.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
+                    <img src="/camp/resources/images/doduckA.jpg" alt="">
+                    <h3>임재학</h3>
+                    <p>캠핑장이 넓고 깔끔해서 가족들이랑 오기 정말 좋았던것 같아요. 다음에 기회되면 언제든 다시 오고 싶습니다.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -226,9 +226,9 @@
             </div>
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic3.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
+                    <img src="/camp/resources/images/doduckB.jpg" alt="">
+                    <h3>오성현</h3>
+                    <p>앞에 강도있고 물도 맑고 깊이도 적당해서 친구들이랑 재밌게 놀았어요!!</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -240,9 +240,9 @@
             </div>
             <div class="swiper-slide">
                 <div class="box">
-                    <img src="images/pic4.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
+                    <img src="/camp/resources/images/golden.jpg" alt="">
+                    <h3>서민수</h3>
+                    <p>주변에 볼거리가 많습니다. 캠핑장 강추</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>

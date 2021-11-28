@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+	 
+ 
 	<script>
 		function fn_goBoardForm(){
 			location.href = "${pageContext.request.contextPath}/qnaboard/qnaBoardForm.do";
@@ -24,7 +26,21 @@
 				location.href = "${pageContext.request.contextPath}/qnaboard/qnaBoardView.do?askNo="+askNo;
 			});
 		});
-		
+		$(document).on('click', '#btnSearch', function(e){
+
+			e.preventDefault();
+
+			var url = "${pageContext.request.contextPath}/qnaboard/qnaBoardList";
+
+			url = url + "?searchType=" + $('#searchType').val();
+
+			url = url + "&keyword=" + $('#keyword').val();
+
+			location.href = url;
+
+			console.log(url);
+
+		});	
 		
 	
 	</script>
@@ -77,18 +93,49 @@
                      </tr>
                 </c:forEach>
             </table>
-             <div>
- 						<form name="search-form" autocomplete="off">
- 								<select name="type">
- 									<option selceted value="">검색 내용 선택</option>
- 									<option vlaue="askTitle">제목</option>
- 									<option vlaue="askContent">내용</option>
- 									<option vlaue="userId">작성자</option>
- 								</select>
- 								<input type="text" name="keyword" value=""></input>
- 								<input type="button" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색"></input>
- 						</form>	
- 					</div>
+            <!-- pagination{e} -->
+
+		<!-- search{s} -->
+
+		<div class="form-group row justify-content-center">
+
+			<div class="w100" style="padding-right:10px">
+
+				<select class="form-control form-control-sm" name="searchType" id="searchType">
+
+					<option value="title">제목</option>
+
+					<option value="Content">본문</option>
+
+					<option value="reg_id">작성자</option>
+
+				</select>
+
+			</div>
+
+			<div class="w300" style="padding-right:10px">
+
+				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+
+			</div>
+
+			<div>
+
+				<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
+
+			</div>
+
+		</div>
+
+		<!-- search{e} -->
+
+	</div>
+
+	</article>
+
+
+
+ 
 	      <c:out value="${pageBar}" escapeXml="false"/>
 	    </section>
 	 <c:import url="../common/footer.jsp"/>

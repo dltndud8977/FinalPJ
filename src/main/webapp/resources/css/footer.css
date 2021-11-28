@@ -2,6 +2,7 @@
 
 .footer{
   background:#333;
+  float : bottom;
 }
 
 
@@ -16,6 +17,4 @@
   border-top: .1rem solid rgba(255,255,255,.2);
 }
 
-.footer span{
-  color:var(--orange);
-}
+

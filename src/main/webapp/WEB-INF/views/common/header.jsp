@@ -23,7 +23,7 @@
 
         <a href="/camp/board/PsBoardList.do">Review</a>
         <a href="${pageContext.request.contextPath }/weather/weatherView.do">Weather&Traffic</a>
-        <a href="">Contact</a>
+        <a href="${pageContext.request.contextPath }/qnaboard/qnaBoardList.do">Contact</a>
         
        <c:if test="${!empty member}">
        <a href="${pageContext.request.contextPath }/reserve/goCheck.do?userId=${member.userId}">MyReservation</a>
@@ -66,7 +66,7 @@
 	        <input type="text" class="box" name="userId" placeholder="아이디를 입력하세요">
 	        <input type="password" class="box" name="userPw" placeholder="비밀번호를 입력하세요">
 	        <input type="submit" value="login now" class="btn">
-	        <p>forget password? <a href="#">click here</a></p>
+	        <p>forget password? <a href="${pageContext.request.contextPath }/member/pw_find.do">click here</a></p>
 	        <p>don't have and account? <a href="/camp/member/memberEnroll.do">회원가입</a></p>
 	    </form>
 	

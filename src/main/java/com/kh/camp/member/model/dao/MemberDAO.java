@@ -19,4 +19,6 @@ public interface MemberDAO {
 	int checkIdDuplicate(String userId);
 
 	int visitCount();
+	
+	int pwUpdateMember(Member member);
 }

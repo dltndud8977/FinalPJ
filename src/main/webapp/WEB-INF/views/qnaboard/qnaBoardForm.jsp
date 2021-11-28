@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 	<script src="htpagetps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src="${Context.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-	 
 	<script>
 	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 	function validate(){
@@ -44,7 +43,9 @@
 		})
 	});
 	
-	
+	$(document).ready(function() {
+		  $('#summernote').summernote();
+		});
 	
 	</script>
 	 <style>
@@ -87,6 +88,7 @@
  	margin-top: -35%;
  	margin-left: 90.5%;
  	}
+ 	
   
   </style>
 </head>
@@ -130,6 +132,7 @@
 				    <label class="custom-file-label" for="upFile2">파일을  선택하세요</label>
 				  </div>
 				</div>
+				
 			    <textarea class="form-control"  name="askContent" placeholder="내용" rows=22; required></textarea>
 				<br />
 					<input type="submit" class="btn btn-outline-success" id="comple" value="저장" >
@@ -138,6 +141,7 @@
 		</div>
 		<c:import url="../common/footer.jsp"/>
 	</div>
+	
 	<div>
 	<aside>
 	<img src="/camp/resources/images/campban.gif" art="배너" class="banner">

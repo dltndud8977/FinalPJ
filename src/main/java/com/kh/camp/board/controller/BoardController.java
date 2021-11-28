@@ -338,6 +338,8 @@ public class BoardController {
 		
 		return "common/msg";
 	}
+	
+	
 }
 	
 	

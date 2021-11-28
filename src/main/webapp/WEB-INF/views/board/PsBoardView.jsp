@@ -31,11 +31,17 @@
 		<c:import url="../common/header.jsp"/>
 		<div id="board-container">
 		<a href="/camp/board/PsBoardList.do"   class="text1" style="font-size:40px; text-decoration: none; color:black;" >CampGo!</a>
-		<span>제목 :
-			<input type="text" id="ntitle" class="form-control" placeholder="제목" name="NTitle" id="boardTitle" value="${PsBoard.NTitle }" readonly required>
-		</span>
-		<p>작성자:</p>	
-			<input type="text" id="nwriter" class="form-control" name="NWriter" value="${PsBoard.NWriter}" readonly required>
+		 <div class="input-group-prepend" style="padding:0px;">
+				    <span class="input-group-text" style="width:200px; background-color:white; height:24px;">제목</span>
+					
+			<input type="text" id="ntitle" class="form-control" placeholder="제목" name="NTitle" id="boardTitle" value="${PsBoard.NTitle }" style="margin-left:-13%;" readonly required>
+				</span>
+		  </div>
+			 <div class="input-group-prepend" style="padding:0px;">
+				    <span class="input-group-text" style="width:200px; background-color:white; height:24px;">작성자</span>	
+			<input type="text" id="nwriter" class="form-control" name="NWriter" value="${PsBoard.NWriter}" style="margin-left:-11.7%;" readonly required>
+				</span>
+		  </div>
 			<c:forEach items="${attachmentList}" var="a" varStatus="vs">
 				<button type="button" 
 						class="btn btn-outline-success btn-block"
@@ -43,14 +49,31 @@
 					첨부파일${vs.count} - ${a.oldName }
 				</button>
 			</c:forEach>
-			<p>내용:</p>
-		    <textarea class="form-control" name="NContent" placeholder="내용"  rows="18" required>${PsBoard.NContent }</textarea>
+			<div class="input-group-prepend" style="padding:0px;">
+				    <span class="input-group-text" style="width:200px; background-color:white; height:300px; text-align:center;">내용</span>
+		    <textarea class="form-control" name="NContent" placeholder="내용"  rows="18" readonly required>${PsBoard.NContent }</textarea>
+		   		</span>
+		 	 </div>
 		    <br>
+		    <!-- Comments Form -->
+	<div class="card my-4">
+		<h5 class="card-header">Leave a Comment:</h5>
+		<div class="card-body">
+			<form name="comment-form" action="/board/comment/write" method="post" autocomplete="off">
+				<div class="form-group">
+					<input type="hidden" name="idx" th:value="*{idx}" />
+					<textarea name="content" class="form-control" rows="3"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">댓글 작성</button>
+			</form>
+		</div>
+	</div>
 		    <button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/board/PsBoardList.do'">리스트로</button>
 		    <c:if test="${member.userId eq PsBoard.NWriter}">
 		    &nbsp;
 			<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/board/boardUpdateView.do?nNo=${PsBoard.NNo}'">수정 페이지</button>
 			</c:if>
+			
 		</div>
 		<c:import url="../common/footer.jsp"/>
 	</div>
