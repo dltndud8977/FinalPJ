@@ -116,7 +116,7 @@
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
                 </div>
-                <div class="price"> $90.00 <span>$120.00</span> </div>
+                <div class="price"> 49,000원 <span>69,000원</span> </div>
                 
                 <!-- 예약하기 주소 추가!!!!!!! -->
                 
@@ -136,7 +136,7 @@
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
                 </div>
-                <div class="price"> $90.00 <span>$120.00</span> </div>
+                <div class="price"> 50,000 <span>60,000</span> </div>
                 <a href="#" class="btn">예약 하기</a>
             </div>
         </div>
@@ -153,7 +153,7 @@
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
                 </div>
-                <div class="price"> $90.00 <span>$120.00</span> </div>
+                <div class="price"> 45,000 <span>60,000</span> </div>
                 <a href="#" class="btn">예약 하기</a>
             </div>
         </div>
@@ -170,7 +170,7 @@
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
                 </div>
-                <div class="price"> $90.00 <span>$120.00</span> </div>
+                <div class="price"> 45,000 <span>55,000</span> </div>
                 <a href="#" class="btn">예약하기</a>
             </div>
         </div>

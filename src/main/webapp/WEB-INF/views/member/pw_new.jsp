@@ -66,6 +66,7 @@ input:hover{
 	<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/shadowlogo.png" alt="logo" /></a>
 <form action="${pageContext.request.contextPath}/member/pw_new.do" method="POST" class="content">
 	<div class="textbox">
+	<input type="hidden" name="userId" value="${ userId }"/>
 		<label>새비밀번호</label>  <br />
 			<input id="pw" name="userPw" type="password" required> 
 	</div>

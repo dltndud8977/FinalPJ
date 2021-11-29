@@ -66,7 +66,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int pwUpdateMember(Member member) {
 		
-		return sqlSession.update("memberSQL.pwUpdateMember");
+		return sqlSession.update("memberSQL.pwUpdateMember", member);
 	}
 	
 }

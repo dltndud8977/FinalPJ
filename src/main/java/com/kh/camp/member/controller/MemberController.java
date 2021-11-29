@@ -220,7 +220,7 @@ public class MemberController {
 				msg = "이메일 확인 완료";
 				
 				
-				
+				model.addAttribute("userId", userId);
 				return "member/pw_new";
 				
 			} else {
@@ -244,13 +244,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/pw_new.do")
-	public String pw_new(Member member, Model model, SessionStatus status ) throws IOException {
+	public String pw_new(Member member, Model model, SessionStatus status , @RequestParam String userPw ) throws IOException {
+		
+		
+		
+		String pass1 = member.getUserPw();
+		String pass2 = bcryptPasswordEncoder.encode(pass1);
+		
+		System.out.println(pass1 + " / " + pass2);
+		
+		member.setUserPw(pass2);
 		
 		int result = memberService.pwUpdateMember(member);
-		
-		
-		
-		
 		
 		String loc = "/";
 		String msg = "";
